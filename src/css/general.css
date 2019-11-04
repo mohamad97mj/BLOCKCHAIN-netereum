@@ -1,0 +1,45 @@
+/* app css stylesheet */
+
+
+
+.center-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+
+.horizontal-center {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.center-block {
+    /*center block elements*/
+    margin: auto;
+}
+
+
+.full-width {
+    width: 100%;
+
+}
+
+.full-height {
+    height: 100%;
+
+}
+
+.full-size {
+
+    width: 100%;
+    height: 100%;
+}
+
+.sub-container {
+    /*height: 400px;*/
+    /*width: 650px;*/
+    padding-top: 10px;
+}
+
