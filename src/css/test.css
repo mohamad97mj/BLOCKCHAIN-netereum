@@ -1,0 +1,909 @@
+
+/*======================================================================================================================
+                                                      COLORS
+========================================================================================================================
+
+        Greenish Blue           :  #34c6d3     (buttons, icons, links, lines & backgrounds)
+        Steel Gray              :  #41464b     (Headings)
+        Blue Bayoux             :  #64707b     (Paragraphs)
+        White                   :  #fff        (text with black backgrounds)
+        Black                   :  #000
+
+
+========================================================================================================================
+                                                      GENERAL CSS
+======================================================================================================================*/
+
+html {
+    height: 100%;
+}
+
+
+body {
+    position: relative;
+    height: 100%;
+    font-family: "Roboto Condensed", sans-serif;
+
+}
+
+.brand {
+   padding-bottom: 8px;
+}
+
+
+
+h3, h4{
+    text-transform: uppercase;
+    color: #41464b;
+}
+
+p {
+    color: #64707b;
+    font-size: 16px;
+    font-weight: lighter;
+}
+
+.horizontal-align {
+    margin: 0 auto 0 auto;
+}
+
+#bootstrap-overrides .no-padding {
+    padding: 0;
+}
+
+#bootstrap-overrides .no-margin {
+    margin: 0;
+}
+
+#bootstrap-overrides .parent-fit {
+    padding: 0;
+    max-width: 100px !important;
+}
+
+#bootstrap-overrides .td-button{
+    max-width: 100px;
+    width: 100px;
+    height: 50px;
+    border-radius: 0;
+}
+
+#bootstrap-overrides .td-50{
+    height: 100%;
+    width: 100px;
+}
+
+#bootstrap-overrides tr {
+    height: 50px;
+}
+
+.custom-check-box {
+    opacity: 0;
+}
+
+.custom-check-box-container {
+    /*color: white;*/
+    background-color: #34c6d3;
+}
+
+.custom-check-box:checked {
+    background-color: #34c6d3;
+}
+
+/*======================================================================================================================
+                                                      HOME
+ =====================================================================================================================*/
+
+
+#home {
+    height: 100vh;
+
+}
+
+#home-cover {
+    height: 100%;
+    background-image: url("../img/bg-home.jpg");
+}
+
+#home-content-box {
+    width: 100%;
+    height: 100%;
+    display: table;
+}
+
+#home-content-box-inner {
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+}
+
+#home-heading h1, #home-heading h2{
+    color: #fff;
+    font-weight: 700;
+    margin: 20px 0 20px 0;
+    text-transform: uppercase;
+
+}
+
+#home-heading h1 {
+    font-size: 55px;
+}
+
+
+#home-heading h2 {
+    font-size: 45px;
+}
+
+
+/*======================================================================================================================
+                                                      BUTTONS
+ =====================================================================================================================*/
+
+#bootstrap-overrides .btn-default-size {
+    padding: 12px 26px 12px 26px;
+    font-size: 16px;
+}
+
+#bootstrap-overrides .btn-small-size {
+    padding: 7px 20px 7px 20px;
+    font-size: 14px;
+}
+
+#bootstrap-overrides .btn-general {
+    border-width: 2px;
+    border-radius: 0;
+    font-weight: 400;
+    text-transform: uppercase;
+}
+
+#bootstrap-overrides .nav-search-btn {
+
+}
+
+#bootstrap-overrides .btn-white {
+    border-color: #ffffff;
+    color: #ffffff;
+
+}
+
+#bootstrap-overrides .btn-white:hover, .btn-white:focus {
+    background-color: #ffffff;
+    color: #41464b;
+}
+
+#bootstrap-overrides .btn-blue {
+    border-color: #34c6d3;
+    color: #34c6d3;
+}
+
+#bootstrap-overrides .btn-bg-blue{
+    background-color: #34c6d3;
+    color: white;
+}
+
+#bootstrap-overrides .btn-bg-blue:hover, #bootstrap-overrides .btn-bg-blue:focus{
+    background-color: white;
+    color: #34c6d3;
+}
+
+#bootstrap-overrides .btn-blue:hover, #bootstrap-overrides .btn-blue:focus {
+    background-color: #34c6d3;
+    color: #fff;
+}
+
+#back-to-top.btn-back-to-top{
+    position: fixed;
+    bottom:20px;
+    right: 20px;
+    font-size: 22px;
+    padding: 3px 15px;
+    border-radius: 0;
+    display: none;
+}
+
+.close-btn {
+    position: absolute;
+    top: 0;
+    right: 0;
+
+}
+
+.add-row-btn {
+    width: 300px;
+    align-content: center;
+}
+
+/* check box */
+
+/*.checkbox-container {*/
+/*    display: block;*/
+/*    position: relative;*/
+/*    padding-left: 35px;*/
+/*    margin-bottom: 12px;*/
+/*    cursor: pointer;*/
+/*    font-size: 22px;*/
+/*    -webkit-user-select: none;*/
+/*    -moz-user-select: none;*/
+/*    -ms-user-select: none;*/
+/*    user-select: none;*/
+/*}*/
+
+/* Hide the browser's default checkbox */
+/*.checkbox-container input {*/
+/*    position: absolute;*/
+/*    opacity: 0;*/
+/*    cursor: pointer;*/
+/*    height: 0;*/
+/*    width: 0;*/
+/*}*/
+
+/* Create a custom checkbox */
+/*.checkmark {*/
+/*    position: absolute;*/
+/*    top: 0;*/
+/*    left: 0;*/
+/*    height: 25px;*/
+/*    width: 25px;*/
+/*    background-color: #eee;*/
+/*}*/
+
+/*!* On mouse-over, add a grey background color *!*/
+/*.checkbox-container:hover input ~ .checkmark {*/
+/*    background-color: #ccc;*/
+/*}*/
+
+/*!* When the checkbox is checked, add a blue background *!*/
+/*.checkbox-container input:checked ~ .checkmark {*/
+/*    background-color: #2196F3;*/
+/*}*/
+
+/*!* Create the checkmark/indicator (hidden when not checked) *!*/
+/*.checkmark:after {*/
+/*    content: "";*/
+/*    position: absolute;*/
+/*    display: none;*/
+/*}*/
+
+/*!* Show the checkmark when checked *!*/
+/*.checkbox-container input:checked ~ .checkmark:after {*/
+/*    display: block;*/
+/*}*/
+
+/*!* Style the checkmark/indicator *!*/
+/*.checkbox-container .checkmark:after {*/
+/*    left: 9px;*/
+/*    top: 5px;*/
+/*    width: 5px;*/
+/*    height: 10px;*/
+/*    border: solid white;*/
+/*    border-width: 0 3px 3px 0;*/
+/*    -webkit-transform: rotate(45deg);*/
+/*    -ms-transform: rotate(45deg);*/
+/*    transform: rotate(45deg);*/
+/*}*/
+
+
+
+/*======================================================================================================================
+                                                      PARALLAX
+ =====================================================================================================================*/
+
+.bg-parallax {
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+
+/*======================================================================================================================
+                                                      ANIMATED
+ =====================================================================================================================*/
+
+#home-cover {
+    animation-delay: 0.1s;
+    animation-duration: 0.5s;
+}
+
+#home-heading {
+    animation-delay: 0.5s;
+    animation-duration: 0.5s;
+}
+
+#home-btn {
+    animation-delay: 1s;
+    animation-duration: 0.5s;
+}
+
+/*======================================================================================================================
+                                                        CONTENT (Generic)
+===================================================================================================================== */
+
+.content-box {
+    padding: 60px 0 60px 0;
+}
+
+.content-title h3 {
+    font-size: 30px;
+    font-weight: 700;
+    text-align: center;
+    margin: 0 0 20px 0px;
+}
+
+.content-title-underline {
+    width: 35px;
+    height: 3px;
+    background-color: #34c6d3;
+    margin: 0 auto 30px auto;
+}
+
+.content-title-white h3{
+    color: white;
+}
+
+/*======================================================================================================================
+                                                      SERVICES
+ =====================================================================================================================*/
+
+.service-item {
+    padding: 20px 0 20px 0;
+    margin-bottom: 20px;
+    cursor: pointer;
+}
+
+.service-item-icon i {
+    color: #34c6d3;
+    float: left;
+    padding: 15px;
+    width: 90px;
+    height: 75px;
+    text-align: center;
+}
+
+.service-item:hover .service-item-icon i {
+    color: #fff;
+    background-color: #34c6d3;
+}
+
+
+.service-item-title h3 {
+    font-size: 20px;
+    font-weight: 400;
+    margin: 0 0 10px 100px;
+
+}
+
+
+.service-item-desc p {
+    margin-left: 100px;
+}
+
+/*======================================================================================================================
+                                                      about
+ =====================================================================================================================*/
+#about-bg-diagonal {
+    width: 60%;
+    height: 700px;
+    float: right;
+    background-image: url(../img/bg-about.jpg);
+    border-left: 200px solid #fff;
+    border-top: 700px solid transparent;
+
+}
+
+#about-content-box {
+    float: left;
+    height: 700px;
+
+}
+
+#about-content-box-outer{
+    width: 100%;
+    height: 100%;
+    display: table;
+}
+
+#about-content-box-inner{
+    display: table-cell;
+    vertical-align: middle;
+}
+
+#about .content-title h3{
+    text-align: left;
+}
+
+#about .content-title-underline{
+    margin: 0 0 30px 0;
+}
+
+#about-desc p{
+    margin-bottom: 30px;
+}
+
+/*======================================================================================================================
+                                                      work
+ =====================================================================================================================*/
+#bootstrap-overrides .my-no-gutters {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.img-wrapper{
+    overflow: hidden;
+}
+
+.img-wrapper img {
+    transition: transform 0.5s ease-in-out;
+}
+
+.img-wrapper img:hover{
+    transform: scale(1.5);
+    cursor: zoom-in;
+}
+
+/*======================================================================================================================
+                                                      team
+ =====================================================================================================================*/
+.team-member{
+    margin: 0 15px;
+}
+
+.team-member-info{
+    padding: 10px 0 30px 0;
+}
+
+.team-member-name {
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    padding-top: 2px;
+}
+
+.team-member-designation {
+    color: #34c6d3;
+    font-size: 15px;
+    font-weight: 700;
+    font-style: italic;
+    letter-spacing: 1px;
+    margin-top: 5px;
+}
+
+/*======================================================================================================================
+                                                      SOCIAL
+ =====================================================================================================================*/
+
+.social-list{
+    padding-left: 0;
+}
+
+.social-list li{
+    list-style: none;
+    display: inline-block;
+    width: 32px;
+    height: 32px;
+    margin-right: 6px;
+    margin-top: 10px;
+}
+
+.social-icon i {
+    font-size: 17px;
+}
+
+.icon-gray{
+    color: #64707b;
+}
+
+.icon-white{
+    color: white;
+}
+
+.social-icon i:hover {
+    color: #34c6d3;
+}
+
+/*======================================================================================================================
+                                                      TESTIMONIALS
+ =====================================================================================================================*/
+#testimonial-cover{
+    background-image: url("../img/bg-testimonials.jpg");
+}
+
+#testimonial .content-box {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+#customers-testimonials {
+    padding: 50px 0;
+}
+
+.testimonials img{
+    max-width: 120px;
+    margin: 0 auto 0 auto;
+}
+
+.testimonials blockquote {
+    border: 0;
+    font-family: 'PT Sans', sans-serif;
+    font-style: italic;
+    color: #fff;
+    padding: 6px 15px;
+    font-weight: 700;
+    position: relative;
+}
+
+.testimonials blockquote p {
+    color: #fff;
+    padding: 0 40px 0 40px;
+}
+
+.testimonials blockquote::before {
+    content: "\201C";
+    top: 0;
+    left: 0;
+}
+
+
+.testimonials blockquote::after {
+    content: "\201D";
+    bottom: 0;
+    right: 0;
+}
+
+.testimonials blockquote::before, .testimonials blockquote::after{
+    font-size: 80px;
+    font-style: normal;
+    line-height: 1;
+    width: 30px;
+    height: 30px;
+    position: absolute;
+}
+
+.testimonial-author p strong{
+    color: #fff;
+    font-size: 17px;
+    font-weight: bold;
+    display: block;
+}
+
+.testimonial-author p span{
+    color: rgba(255, 255, 255, .5);
+    font-size: 17px;
+}
+
+
+/*======================================================================================================================
+                                                      PRICING
+ =====================================================================================================================*/
+
+.pricing-box {
+    border: 3px solid #34c6d3;
+    padding: 50px 0;
+    margin: 40px 0;
+}
+
+h4.pricing-title{
+    background-color: #34c6d3;
+    color: white;
+    display: inline-block;
+    padding: 7px 15px;
+    font-size: 14px;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin: 0 0 30px 0;
+}
+
+h3.pricing-value {
+    font-size: 60px;
+    font-weight: 700;
+
+}
+
+h3.pricing-value sup{
+    font-size: 28px;
+    font-weight: normal;
+    vertical-align: super;
+}
+
+ul.pricing-spec {
+    list-style: none;
+    padding-left: 0;
+    margin: 20px 0 60px 0;
+}
+
+ul.pricing-spec li p {
+    font-weight: 400;
+    text-transform: uppercase;
+}
+
+.pricing-box-lg {
+    padding: 90px 0;
+    margin: 0 30px;
+    background-color: #34c6d3;
+
+}
+
+.pricing-box-lg h4.pricing-title {
+    color: #34c6d3;
+    background-color: white;
+}
+
+.pricing-box-lg ul.pricing-spec li p {
+    color: white;
+
+}
+
+
+/*======================================================================================================================
+                                                      Stats
+ =====================================================================================================================*/
+
+#stats-cover {
+    background-image: url("../img/bg-stats.jpg");
+}
+
+#stats .content-box {
+    background-color: rgba(0, 0, 0, .8);
+}
+
+.stats-item {
+    padding: 100px 0;
+}
+
+.stats-item i {
+    color: #34c6d3;
+}
+
+.stats-item h2 {
+    color: white;
+    font-weight: 700;
+    font-size: 35px;
+    margin: 15px 0 1px 0;
+}
+
+.stats-item p {
+    color: white;
+    text-transform: uppercase;
+    font-weight: 300;
+    margin-top: 0;
+}
+
+/*======================================================================================================================
+                                                      CLIENT
+ =====================================================================================================================*/
+.client{
+    padding: 40px 0;
+}
+
+/*======================================================================================================================
+                                                      CONTACT
+ =====================================================================================================================*/
+
+footer {
+    background-color: #41464b;
+    padding-top: 30px;
+    border-top: 5px solid rgba(0, 0, 0, 0.1);
+}
+
+#contact-left h3, #contact-right h3 {
+    color: white;
+    font-size: 27px;
+    font-weight: 700;
+
+}
+
+#contact-left p {
+    color: white;
+    margin-bottom: 30px;
+}
+
+#contact-info {
+    background-image: url("../img/world-map.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+
+}
+
+address {
+    color: white;
+}
+
+address b, #phone-fax-email b {
+    letter-spacing: 1px;
+}
+
+.my-form-control {
+    background: transparent;
+    border-radius: 0;
+    font-size: 17px;
+    font-weight: 300;
+    padding: 8px 16px;
+}
+
+.form-item {
+    margin-bottom: 20px;
+}
+
+.form-control-white {
+
+    border-color: white;
+    color: white;
+}
+
+.form-control-blue {
+    border-color: #34c6d3;
+    color: #34c6d3;
+
+}
+
+/*======================================================================================================================
+                                                      COPYRIGHTS
+ =====================================================================================================================*/
+
+#footer-bottom {
+    background-color: rgba(0, 0, 0, 0.1);
+    padding: 30px 0;
+    margin-top: 60px;
+}
+
+#footer-copyrights p {
+    margin: 0;
+    color: white;
+}
+
+#footer-menu {
+    float: left;
+    color: white;
+    font-size: 16px;
+    font-weight: 300;
+}
+
+#footer-menu ul{
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+}
+
+#footer-menu ul li {
+    display: inline-block;
+}
+
+#footer-menu a {
+    color: white;
+    font-size: 16px;
+    font-weight: 300;
+    margin: 0 10px;
+    text-decoration: none;
+}
+
+#footer-menu a:hover {
+    color: #34c6d3;
+}
+
+/*======================================================================================================================
+                                                      NAV-BAR
+ =====================================================================================================================*/
+
+
+#bootstrap-overrides .navbar {
+    padding: 20px 50px;
+    transition: all 0.5s ease-in-out;
+}
+
+.netereum-top-nav {
+}
+
+#bootstrap-overrides .netereum-nav-wrapper {
+    /*padding: 0 85px;*/
+}
+
+#bootstrap-overrides .my-navbar-nav{
+
+}
+
+.my-navbar-nav > li > a, #login-btn{
+    font-size: 15px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 700;
+}
+
+/*#login-btn, #login-btn:hover, #login-btn:focus {*/
+/*    color: #c82333;*/
+/*    padding-bottom: 20px;*/
+/*}*/
+
+.navbar-transparent {
+    background: rgba(0, 0, 0, 0.7);
+}
+
+#bootstrap-overrides .nav-list > li > a {
+    color: white;
+}
+
+#bootstrap-overrides .my-navbar-nav > li > a:hover, #bootstrap-overrides .my-navbar-nav > li > a:focus {
+    background: none;
+    color: #34c6d3;
+}
+
+#bootstrap-overrides .my-navbar-toggler {
+    background-color: rgba(0, 0, 0, 0.1);
+    border: 1px solid white;
+    border-radius: 0;
+}
+
+#bootstrap-overrides .my-navbar-collapse {
+    max-height: none !important;
+}
+
+#netereum-menu {
+    width: 100%;
+}
+
+#bootstrap-overrides .netereum-top-nav ul.navbar-nav > li > a.active {
+    color: #34c6d3;
+}
+
+/*======================================================================================================================
+                                                       MODAL FORM
+ =====================================================================================================================*/
+
+.modal-content {
+    background-color: rgba(255, 255, 255, .95);
+    /*width: 400px;*/
+    /*height: 375px;*/
+}
+
+.modal-form {
+    /*display: flex;*/
+}
+
+.modal-form-item {
+    margin-bottom: 40px;
+}
+
+/*======================================================================================================================
+                                                       LOGGED IN CONTENT
+ =====================================================================================================================*/
+
+.left-content > ul > li > a{
+    color: #41464b;
+}
+
+.left-content {
+    border-right: 3px groove #41464b;
+}
+
+.left-content {
+    display: none;
+}
+
+.right-content {
+    display: none;
+    min-height: calc(100vh - 97px);
+}
+
+.separator {
+    border-bottom: 1px solid #dee2e6;
+}
+
+.left-content > ul > li :hover {
+    background-color: #41464b;
+    color: white;
+}
+
+.right-content .table {
+
+}
+
+.tab-content {
+    display: none;
+}
+
+/*#bootstrap-overrides .table-striped tbody tr:nth-of-type(odd) {*/
+    /*background-color:rgba(0,0,0,.05)*/
+/*}*/
+
+/*#bootstrap-overrides .table-hover tbody tr:hover{*/
+/*    color:#212529;*/
+/*    background-color:rgba(0,0,0,.075)*/
+/*}*/
+

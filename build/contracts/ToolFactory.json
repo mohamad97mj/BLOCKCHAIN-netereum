@@ -1,0 +1,369 @@
+{
+  "contractName": "ToolFactory",
+  "abi": [
+    {
+      "constant": false,
+      "inputs": [],
+      "name": "create",
+      "outputs": [
+        {
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ],
+  "metadata": "{\"compiler\":{\"version\":\"0.5.8+commit.23d335f2\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"constant\":false,\"inputs\":[],\"name\":\"create\",\"outputs\":[{\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"methods\":{}},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"/home/momi/WebstormProjects/Netereum/contracts/ToolFactory.sol\":\"ToolFactory\"},\"evmVersion\":\"petersburg\",\"libraries\":{},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/home/momi/WebstormProjects/Netereum/contracts/ToolFactory.sol\":{\"keccak256\":\"0xc874b51e4574f95a33f7d3c4120111705f23451406a5ebbeffe80ab9ebc09f9a\",\"urls\":[\"bzzr://eeef66b8c1d6da8e313a4fe5cbad350661ee33f54e7b4f26aeb14adbd98854b6\"]},\"/home/momi/WebstormProjects/Netereum/contracts/Tools.sol\":{\"keccak256\":\"0x15f8972483aa324ee78544129d01ac4b055bdf2958a7934f1255b054f07e0c5b\",\"urls\":[\"bzzr://0d18960ec08ac2b0fce944bc47059de0a5582c29312c7f391df424a945142410\"]}},\"version\":1}",
+  "bytecode": "0x608060405234801561001057600080fd5b5061027f806100206000396000f3fe608060405234801561001057600080fd5b506004361061002b5760003560e01c8063efc81a8c14610030575b600080fd5b61003861007a565b604051808273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b6000604051610088906100aa565b604051809103906000f0801580156100a4573d6000803e3d6000fd5b50905090565b61019c806100b88339019056fe608060405234801561001057600080fd5b5061017c806100206000396000f3fe608060405234801561001057600080fd5b506004361061002b5760003560e01c80639792bc0e14610030575b600080fd5b61005c6004803603602081101561004657600080fd5b8101908080359060200190929190505050610072565b6040518082815260200191505060405180910390f35b6000620f42408212156100995762d2ced261009183620f4240026100aa565b0390506100a5565b6100a2826100aa565b90505b919050565b600080600090505b6216e36083126100d95762062fd981019050600360028402816100d157fe5b0592506100b2565b620f42408303925060008390506000600190505b600a811215610145578082816100ff57fe5b0583019250600181019050620f42408583028161011857fe5b05915080828161012457fe5b0583039250600181019050620f42408583028161013d57fe5b0591506100ed565b82935050505091905056fea165627a7a72305820e35be4d89d6273bbc4763687aa7c237b7f7044acf3462964b403b5ab657d77180029a165627a7a7230582030c24592df0807915d41a1c4677b16d6a6466919a163a02ba144e1f1f5d9b4430029",
+  "deployedBytecode": "0x608060405234801561001057600080fd5b506004361061002b5760003560e01c8063efc81a8c14610030575b600080fd5b61003861007a565b604051808273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b6000604051610088906100aa565b604051809103906000f0801580156100a4573d6000803e3d6000fd5b50905090565b61019c806100b88339019056fe608060405234801561001057600080fd5b5061017c806100206000396000f3fe608060405234801561001057600080fd5b506004361061002b5760003560e01c80639792bc0e14610030575b600080fd5b61005c6004803603602081101561004657600080fd5b8101908080359060200190929190505050610072565b6040518082815260200191505060405180910390f35b6000620f42408212156100995762d2ced261009183620f4240026100aa565b0390506100a5565b6100a2826100aa565b90505b919050565b600080600090505b6216e36083126100d95762062fd981019050600360028402816100d157fe5b0592506100b2565b620f42408303925060008390506000600190505b600a811215610145578082816100ff57fe5b0583019250600181019050620f42408583028161011857fe5b05915080828161012457fe5b0583039250600181019050620f42408583028161013d57fe5b0591506100ed565b82935050505091905056fea165627a7a72305820e35be4d89d6273bbc4763687aa7c237b7f7044acf3462964b403b5ab657d77180029a165627a7a7230582030c24592df0807915d41a1c4677b16d6a6466919a163a02ba144e1f1f5d9b4430029",
+  "sourceMap": "46:108:7:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;46:108:7;;;;;;;",
+  "deployedSourceMap": "46:108:7:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;46:108:7;;;;;;;;;;;;;;;;;;;73:79;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;;106:5;134:11;;;;;:::i;:::-;;;;;;;;;;;8:9:-1;5:2;;;45:16;42:1;39;24:38;77:16;74:1;67:27;5:2;134:11:7;127:18;;73:79;:::o;46:108::-;;;;;;;;:::o",
+  "source": "pragma solidity ^0.5.0;\nimport \"./Tools.sol\";\ncontract ToolFactory {\n    function create() public returns(Tools)\n    {\n        return new Tools();\n    }\n}\n",
+  "sourcePath": "/home/momi/WebstormProjects/Netereum/contracts/ToolFactory.sol",
+  "ast": {
+    "absolutePath": "/home/momi/WebstormProjects/Netereum/contracts/ToolFactory.sol",
+    "exportedSymbols": {
+      "ToolFactory": [
+        4076
+      ]
+    },
+    "id": 4077,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 4064,
+        "literals": [
+          "solidity",
+          "^",
+          "0.5",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:23:7"
+      },
+      {
+        "absolutePath": "/home/momi/WebstormProjects/Netereum/contracts/Tools.sol",
+        "file": "./Tools.sol",
+        "id": 4065,
+        "nodeType": "ImportDirective",
+        "scope": 4077,
+        "sourceUnit": 4205,
+        "src": "24:21:7",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [
+          4204
+        ],
+        "contractKind": "contract",
+        "documentation": null,
+        "fullyImplemented": true,
+        "id": 4076,
+        "linearizedBaseContracts": [
+          4076
+        ],
+        "name": "ToolFactory",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "body": {
+              "id": 4074,
+              "nodeType": "Block",
+              "src": "117:35:7",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "arguments": [],
+                    "expression": {
+                      "argumentTypes": [],
+                      "id": 4071,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "nodeType": "NewExpression",
+                      "src": "134:9:7",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_creation_nonpayable$__$returns$_t_contract$_Tools_$4204_$",
+                        "typeString": "function () returns (contract Tools)"
+                      },
+                      "typeName": {
+                        "contractScope": null,
+                        "id": 4070,
+                        "name": "Tools",
+                        "nodeType": "UserDefinedTypeName",
+                        "referencedDeclaration": 4204,
+                        "src": "138:5:7",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_contract$_Tools_$4204",
+                          "typeString": "contract Tools"
+                        }
+                      }
+                    },
+                    "id": 4072,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "134:11:7",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_contract$_Tools_$4204",
+                      "typeString": "contract Tools"
+                    }
+                  },
+                  "functionReturnParameters": 4069,
+                  "id": 4073,
+                  "nodeType": "Return",
+                  "src": "127:18:7"
+                }
+              ]
+            },
+            "documentation": null,
+            "id": 4075,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "create",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 4066,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "88:2:7"
+            },
+            "returnParameters": {
+              "id": 4069,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 4068,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 4075,
+                  "src": "106:5:7",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_contract$_Tools_$4204",
+                    "typeString": "contract Tools"
+                  },
+                  "typeName": {
+                    "contractScope": null,
+                    "id": 4067,
+                    "name": "Tools",
+                    "nodeType": "UserDefinedTypeName",
+                    "referencedDeclaration": 4204,
+                    "src": "106:5:7",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_contract$_Tools_$4204",
+                      "typeString": "contract Tools"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "105:7:7"
+            },
+            "scope": 4076,
+            "src": "73:79:7",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "public"
+          }
+        ],
+        "scope": 4077,
+        "src": "46:108:7"
+      }
+    ],
+    "src": "0:155:7"
+  },
+  "legacyAST": {
+    "absolutePath": "/home/momi/WebstormProjects/Netereum/contracts/ToolFactory.sol",
+    "exportedSymbols": {
+      "ToolFactory": [
+        4076
+      ]
+    },
+    "id": 4077,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 4064,
+        "literals": [
+          "solidity",
+          "^",
+          "0.5",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:23:7"
+      },
+      {
+        "absolutePath": "/home/momi/WebstormProjects/Netereum/contracts/Tools.sol",
+        "file": "./Tools.sol",
+        "id": 4065,
+        "nodeType": "ImportDirective",
+        "scope": 4077,
+        "sourceUnit": 4205,
+        "src": "24:21:7",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [
+          4204
+        ],
+        "contractKind": "contract",
+        "documentation": null,
+        "fullyImplemented": true,
+        "id": 4076,
+        "linearizedBaseContracts": [
+          4076
+        ],
+        "name": "ToolFactory",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "body": {
+              "id": 4074,
+              "nodeType": "Block",
+              "src": "117:35:7",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "arguments": [],
+                    "expression": {
+                      "argumentTypes": [],
+                      "id": 4071,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "nodeType": "NewExpression",
+                      "src": "134:9:7",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_creation_nonpayable$__$returns$_t_contract$_Tools_$4204_$",
+                        "typeString": "function () returns (contract Tools)"
+                      },
+                      "typeName": {
+                        "contractScope": null,
+                        "id": 4070,
+                        "name": "Tools",
+                        "nodeType": "UserDefinedTypeName",
+                        "referencedDeclaration": 4204,
+                        "src": "138:5:7",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_contract$_Tools_$4204",
+                          "typeString": "contract Tools"
+                        }
+                      }
+                    },
+                    "id": 4072,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "134:11:7",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_contract$_Tools_$4204",
+                      "typeString": "contract Tools"
+                    }
+                  },
+                  "functionReturnParameters": 4069,
+                  "id": 4073,
+                  "nodeType": "Return",
+                  "src": "127:18:7"
+                }
+              ]
+            },
+            "documentation": null,
+            "id": 4075,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "create",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 4066,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "88:2:7"
+            },
+            "returnParameters": {
+              "id": 4069,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 4068,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 4075,
+                  "src": "106:5:7",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_contract$_Tools_$4204",
+                    "typeString": "contract Tools"
+                  },
+                  "typeName": {
+                    "contractScope": null,
+                    "id": 4067,
+                    "name": "Tools",
+                    "nodeType": "UserDefinedTypeName",
+                    "referencedDeclaration": 4204,
+                    "src": "106:5:7",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_contract$_Tools_$4204",
+                      "typeString": "contract Tools"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "105:7:7"
+            },
+            "scope": 4076,
+            "src": "73:79:7",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "public"
+          }
+        ],
+        "scope": 4077,
+        "src": "46:108:7"
+      }
+    ],
+    "src": "0:155:7"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.5.8+commit.23d335f2.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.0.16",
+  "updatedAt": "2019-11-04T09:45:02.191Z",
+  "devdoc": {
+    "methods": {}
+  },
+  "userdoc": {
+    "methods": {}
+  }
+}

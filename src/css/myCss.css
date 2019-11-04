@@ -1,0 +1,156 @@
+.tab {
+    overflow: hidden;
+    border: 1px solid #ccc;
+    background-color: #f1f1f1;
+}
+
+/* Style the buttons that are used to open the tab content */
+.tab button {
+    background-color: inherit;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    transition: 0.3s;
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+    background-color: #ddd;
+}
+
+/* Create an active/current tablink class */
+.tab button.active {
+    background-color: #ccc;
+}
+
+/* Style the tab content */
+.tabcontent {
+    display: none;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+}
+
+/* app css stylesheet */
+
+.menu {
+    list-style: none;
+    border-bottom: 0.1em solid black;
+    margin-bottom: 2em;
+    padding: 0 0 0.5em;
+}
+
+.menu:before {
+    content: "[";
+}
+
+.menu:after {
+    content: "]";
+}
+
+.menu > li {
+    display: inline;
+}
+
+.menu > li + li:before {
+    content: "|";
+    padding-right: 0.3em;
+}
+
+
+.center-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.no-space {
+    margin: -15px;
+}
+
+.horizontal-center {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.center-block {
+    /*center block elements*/
+    margin: auto;
+    /*width: 100px;*/
+    /*height: 100px;*/
+}
+
+
+.full-width {
+    width: 100%;
+
+}
+
+.full-height {
+    height: 100%;
+
+}
+
+.full-size {
+
+    width: 100%;
+    height: 100%;
+}
+
+.myPre {
+
+    font-size:x-large;
+    line-height: 300%;
+    /*font-weight: bold;*/
+    color: #f9f9f9;
+    white-space: normal;
+    font-family: Arial, SansSerif, serif;
+    /*word-break: break-all;*/
+
+}
+
+.sub-container {
+    /*height: 400px;*/
+    /*width: 650px;*/
+    padding-top: 10px;
+}
+
+.sub-view {
+
+    background-color: #292b2c;
+    opacity: 0.95;
+    overflow: auto;
+
+}
+
+
+*{
+    font-family: Yrsa, serif;
+    font-size: large;
+
+}
+.small-input {
+    width: 50px;
+    height: 50px;
+}
+
+select option {
+    margin: 40px;
+    background: rgba(255, 255, 255, 0.3);
+    color: rgb(0, 0, 0);
+    text-shadow: 0 1px 0 rgba(0, 0, 0, 0.4);
+
+}
+
+.btn span.glyphicon {
+    opacity: 0;
+}
+.btn.active span.glyphicon {
+    opacity: 1;
+}
+

@@ -1,0 +1,110 @@
+/* app css stylesheet */
+
+.menu {
+    list-style: none;
+    border-bottom: 0.1em solid black;
+    margin-bottom: 2em;
+    padding: 0 0 0.5em;
+}
+
+.menu:before {
+    content: "[";
+}
+
+.menu:after {
+    content: "]";
+}
+
+.menu > li {
+    display: inline;
+}
+
+.menu > li + li:before {
+    content: "|";
+    padding-right: 0.3em;
+}
+
+
+.center-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.no-space {
+    margin: -15px;
+}
+
+.horizontal-center {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.center-block {
+    /*center block elements*/
+    margin: auto;
+}
+
+
+.full-width {
+    width: 100%;
+
+}
+
+.full-height {
+    height: 100%;
+
+}
+
+.full-size {
+
+    width: 100%;
+    height: 100%;
+}
+
+.myPre {
+
+    font-size:x-large;
+    line-height: 300%;
+    /*font-weight: bold;*/
+    color: #f9f9f9;
+    white-space: normal;
+    font-family: Arial, SansSerif, serif;
+    /*word-break: break-all;*/
+
+}
+
+.sub-container {
+    /*height: 400px;*/
+    /*width: 650px;*/
+    padding-top: 10px;
+}
+
+.sub-view {
+
+    background-color: #292b2c;
+    opacity: 0.95;
+    overflow: auto;
+
+}
+
+
+*{
+    color: #f9f9f9;
+    font-family: Arial, serif;
+
+}
+.small-input {
+    width: 50px;
+    height: 50px;
+}
+
+select option {
+    margin: 40px;
+    background: rgba(255, 255, 255, 0.3);
+    color: rgb(0, 0, 0);
+    text-shadow: 0 1px 0 rgba(0, 0, 0, 0.4);
+
+}
+

@@ -1,0 +1,952 @@
+{
+  "contractName": "Graph",
+  "abi": [],
+  "metadata": "{\"compiler\":{\"version\":\"0.5.8+commit.23d335f2\"},\"language\":\"Solidity\",\"output\":{\"abi\":[],\"devdoc\":{\"methods\":{}},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"/home/momi/WebstormProjects/Netereum/contracts/Graph.sol\":\"Graph\"},\"evmVersion\":\"petersburg\",\"libraries\":{},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/home/momi/WebstormProjects/Netereum/contracts/Graph.sol\":{\"keccak256\":\"0x45150aeb94408ecf6080cb3c45e88a2f05dd329dd76bb7de4a53530ea44131a0\",\"urls\":[\"bzzr://b513f1cbf6da8f430b5f3305501d263deaca3137f7799724e935507b166141e3\"]}},\"version\":1}",
+  "bytecode": "0x604c6023600b82828239805160001a607314601657fe5b30600052607381538281f3fe73000000000000000000000000000000000000000030146080604052600080fdfea165627a7a723058207fe89468d48a47e52d317e55949377e588d8413886345be4d116d1665b3b970e0029",
+  "deployedBytecode": "0x73000000000000000000000000000000000000000030146080604052600080fdfea165627a7a723058207fe89468d48a47e52d317e55949377e588d8413886345be4d116d1665b3b970e0029",
+  "sourceMap": "25:1872:2:-;;132:2:-1;166:7;155:9;146:7;137:37;255:7;249:14;246:1;241:23;235:4;232:33;222:2;;269:9;222:2;293:9;290:1;283:20;323:4;314:7;306:22;347:7;338;331:24",
+  "deployedSourceMap": "25:1872:2:-;;;;;;;;",
+  "source": "pragma solidity ^0.5.0;\n\nlibrary Graph {\n    /* The algorithm for computing the maximum fee and also executing the transactions needs a graph that represents\n   the coordinators and the agreements between them. Therefore the elements of a graph are going to be declared as\n   struct and they will be used in the Netereum contract*/\n    /* Node : Each node represents a coordinator and the fields parent and distance will be used for the bellman ford algorithm in the\n       max fee function */\n    struct Node\n    {\n        address coordinator;\n        address parent;// the key of the parent in the nodes list\n        int256 distance;\n        bool isInserted;\n    }\n    /* Edge : each edge describes the relation between two coordinators. In fact, every edge has a list of agreements\n    between the two coordinators. The lowest fee in the agreements will be considered  as the weight of the edge. */\n    struct Edge\n    {\n        address source;\n        address destination; // FIRST IT WAS SUPPOSED TO BE A NODE, BUT SOLIDITY DOESN'T SUPPORT SAME POINTER TO MULTIPLE STRUCTS\n        //WeightElement[] weights;\n        mapping(uint256 => WeightElement) weights;\n        uint256 numberOfWeights;\n        uint256 minIndex;// index of the weight element with the minimum fee\n    }\n    /* WeightElement: this struct (data structure) is used to store the data  for each weight of an edge\n     the numerator and denominator are part of a fraction which is used in division or multiplication when iterating through the graph */\n    struct WeightElement\n    {\n        uint256 exchangeRate;\n        int256 exchangeRateLog;// the log of exchange rate. this attribute is going to be used as the weight of the edge\n        uint8 reverse;// if 1, the reverse of the exchange rate should be used\n        uint256 sourceAmount;\n        address agreementAddress;// the address of the associated agreement\n    }\n}\n",
+  "sourcePath": "/home/momi/WebstormProjects/Netereum/contracts/Graph.sol",
+  "ast": {
+    "absolutePath": "/home/momi/WebstormProjects/Netereum/contracts/Graph.sol",
+    "exportedSymbols": {
+      "Graph": [
+        353
+      ]
+    },
+    "id": 354,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 319,
+        "literals": [
+          "solidity",
+          "^",
+          "0.5",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:23:2"
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "library",
+        "documentation": null,
+        "fullyImplemented": true,
+        "id": 353,
+        "linearizedBaseContracts": [
+          353
+        ],
+        "name": "Graph",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "canonicalName": "Graph.Node",
+            "id": 328,
+            "members": [
+              {
+                "constant": false,
+                "id": 321,
+                "name": "coordinator",
+                "nodeType": "VariableDeclaration",
+                "scope": 328,
+                "src": "524:19:2",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_address",
+                  "typeString": "address"
+                },
+                "typeName": {
+                  "id": 320,
+                  "name": "address",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "524:7:2",
+                  "stateMutability": "nonpayable",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 323,
+                "name": "parent",
+                "nodeType": "VariableDeclaration",
+                "scope": 328,
+                "src": "553:14:2",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_address",
+                  "typeString": "address"
+                },
+                "typeName": {
+                  "id": 322,
+                  "name": "address",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "553:7:2",
+                  "stateMutability": "nonpayable",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 325,
+                "name": "distance",
+                "nodeType": "VariableDeclaration",
+                "scope": 328,
+                "src": "619:15:2",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_int256",
+                  "typeString": "int256"
+                },
+                "typeName": {
+                  "id": 324,
+                  "name": "int256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "619:6:2",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_int256",
+                    "typeString": "int256"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 327,
+                "name": "isInserted",
+                "nodeType": "VariableDeclaration",
+                "scope": 328,
+                "src": "644:15:2",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_bool",
+                  "typeString": "bool"
+                },
+                "typeName": {
+                  "id": 326,
+                  "name": "bool",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "644:4:2",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              }
+            ],
+            "name": "Node",
+            "nodeType": "StructDefinition",
+            "scope": 353,
+            "src": "498:168:2",
+            "visibility": "public"
+          },
+          {
+            "canonicalName": "Graph.Edge",
+            "id": 341,
+            "members": [
+              {
+                "constant": false,
+                "id": 330,
+                "name": "source",
+                "nodeType": "VariableDeclaration",
+                "scope": 341,
+                "src": "932:14:2",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_address",
+                  "typeString": "address"
+                },
+                "typeName": {
+                  "id": 329,
+                  "name": "address",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "932:7:2",
+                  "stateMutability": "nonpayable",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 332,
+                "name": "destination",
+                "nodeType": "VariableDeclaration",
+                "scope": 341,
+                "src": "956:19:2",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_address",
+                  "typeString": "address"
+                },
+                "typeName": {
+                  "id": 331,
+                  "name": "address",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "956:7:2",
+                  "stateMutability": "nonpayable",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 336,
+                "name": "weights",
+                "nodeType": "VariableDeclaration",
+                "scope": 341,
+                "src": "1121:41:2",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_WeightElement_$352_storage_$",
+                  "typeString": "mapping(uint256 => struct Graph.WeightElement)"
+                },
+                "typeName": {
+                  "id": 335,
+                  "keyType": {
+                    "id": 333,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1129:7:2",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "nodeType": "Mapping",
+                  "src": "1121:33:2",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_WeightElement_$352_storage_$",
+                    "typeString": "mapping(uint256 => struct Graph.WeightElement)"
+                  },
+                  "valueType": {
+                    "contractScope": null,
+                    "id": 334,
+                    "name": "WeightElement",
+                    "nodeType": "UserDefinedTypeName",
+                    "referencedDeclaration": 352,
+                    "src": "1140:13:2",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_struct$_WeightElement_$352_storage_ptr",
+                      "typeString": "struct Graph.WeightElement"
+                    }
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 338,
+                "name": "numberOfWeights",
+                "nodeType": "VariableDeclaration",
+                "scope": 341,
+                "src": "1172:23:2",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 337,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "1172:7:2",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 340,
+                "name": "minIndex",
+                "nodeType": "VariableDeclaration",
+                "scope": 341,
+                "src": "1205:16:2",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 339,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "1205:7:2",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              }
+            ],
+            "name": "Edge",
+            "nodeType": "StructDefinition",
+            "scope": 353,
+            "src": "906:373:2",
+            "visibility": "public"
+          },
+          {
+            "canonicalName": "Graph.WeightElement",
+            "id": 352,
+            "members": [
+              {
+                "constant": false,
+                "id": 343,
+                "name": "exchangeRate",
+                "nodeType": "VariableDeclaration",
+                "scope": 352,
+                "src": "1562:20:2",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 342,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "1562:7:2",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 345,
+                "name": "exchangeRateLog",
+                "nodeType": "VariableDeclaration",
+                "scope": 352,
+                "src": "1592:22:2",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_int256",
+                  "typeString": "int256"
+                },
+                "typeName": {
+                  "id": 344,
+                  "name": "int256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "1592:6:2",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_int256",
+                    "typeString": "int256"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 347,
+                "name": "reverse",
+                "nodeType": "VariableDeclaration",
+                "scope": 352,
+                "src": "1713:13:2",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint8",
+                  "typeString": "uint8"
+                },
+                "typeName": {
+                  "id": 346,
+                  "name": "uint8",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "1713:5:2",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint8",
+                    "typeString": "uint8"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 349,
+                "name": "sourceAmount",
+                "nodeType": "VariableDeclaration",
+                "scope": 352,
+                "src": "1792:20:2",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 348,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "1792:7:2",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 351,
+                "name": "agreementAddress",
+                "nodeType": "VariableDeclaration",
+                "scope": 352,
+                "src": "1822:24:2",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_address",
+                  "typeString": "address"
+                },
+                "typeName": {
+                  "id": 350,
+                  "name": "address",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "1822:7:2",
+                  "stateMutability": "nonpayable",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              }
+            ],
+            "name": "WeightElement",
+            "nodeType": "StructDefinition",
+            "scope": 353,
+            "src": "1527:368:2",
+            "visibility": "public"
+          }
+        ],
+        "scope": 354,
+        "src": "25:1872:2"
+      }
+    ],
+    "src": "0:1898:2"
+  },
+  "legacyAST": {
+    "absolutePath": "/home/momi/WebstormProjects/Netereum/contracts/Graph.sol",
+    "exportedSymbols": {
+      "Graph": [
+        353
+      ]
+    },
+    "id": 354,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 319,
+        "literals": [
+          "solidity",
+          "^",
+          "0.5",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:23:2"
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "library",
+        "documentation": null,
+        "fullyImplemented": true,
+        "id": 353,
+        "linearizedBaseContracts": [
+          353
+        ],
+        "name": "Graph",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "canonicalName": "Graph.Node",
+            "id": 328,
+            "members": [
+              {
+                "constant": false,
+                "id": 321,
+                "name": "coordinator",
+                "nodeType": "VariableDeclaration",
+                "scope": 328,
+                "src": "524:19:2",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_address",
+                  "typeString": "address"
+                },
+                "typeName": {
+                  "id": 320,
+                  "name": "address",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "524:7:2",
+                  "stateMutability": "nonpayable",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 323,
+                "name": "parent",
+                "nodeType": "VariableDeclaration",
+                "scope": 328,
+                "src": "553:14:2",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_address",
+                  "typeString": "address"
+                },
+                "typeName": {
+                  "id": 322,
+                  "name": "address",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "553:7:2",
+                  "stateMutability": "nonpayable",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 325,
+                "name": "distance",
+                "nodeType": "VariableDeclaration",
+                "scope": 328,
+                "src": "619:15:2",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_int256",
+                  "typeString": "int256"
+                },
+                "typeName": {
+                  "id": 324,
+                  "name": "int256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "619:6:2",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_int256",
+                    "typeString": "int256"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 327,
+                "name": "isInserted",
+                "nodeType": "VariableDeclaration",
+                "scope": 328,
+                "src": "644:15:2",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_bool",
+                  "typeString": "bool"
+                },
+                "typeName": {
+                  "id": 326,
+                  "name": "bool",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "644:4:2",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              }
+            ],
+            "name": "Node",
+            "nodeType": "StructDefinition",
+            "scope": 353,
+            "src": "498:168:2",
+            "visibility": "public"
+          },
+          {
+            "canonicalName": "Graph.Edge",
+            "id": 341,
+            "members": [
+              {
+                "constant": false,
+                "id": 330,
+                "name": "source",
+                "nodeType": "VariableDeclaration",
+                "scope": 341,
+                "src": "932:14:2",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_address",
+                  "typeString": "address"
+                },
+                "typeName": {
+                  "id": 329,
+                  "name": "address",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "932:7:2",
+                  "stateMutability": "nonpayable",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 332,
+                "name": "destination",
+                "nodeType": "VariableDeclaration",
+                "scope": 341,
+                "src": "956:19:2",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_address",
+                  "typeString": "address"
+                },
+                "typeName": {
+                  "id": 331,
+                  "name": "address",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "956:7:2",
+                  "stateMutability": "nonpayable",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 336,
+                "name": "weights",
+                "nodeType": "VariableDeclaration",
+                "scope": 341,
+                "src": "1121:41:2",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_WeightElement_$352_storage_$",
+                  "typeString": "mapping(uint256 => struct Graph.WeightElement)"
+                },
+                "typeName": {
+                  "id": 335,
+                  "keyType": {
+                    "id": 333,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1129:7:2",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "nodeType": "Mapping",
+                  "src": "1121:33:2",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_WeightElement_$352_storage_$",
+                    "typeString": "mapping(uint256 => struct Graph.WeightElement)"
+                  },
+                  "valueType": {
+                    "contractScope": null,
+                    "id": 334,
+                    "name": "WeightElement",
+                    "nodeType": "UserDefinedTypeName",
+                    "referencedDeclaration": 352,
+                    "src": "1140:13:2",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_struct$_WeightElement_$352_storage_ptr",
+                      "typeString": "struct Graph.WeightElement"
+                    }
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 338,
+                "name": "numberOfWeights",
+                "nodeType": "VariableDeclaration",
+                "scope": 341,
+                "src": "1172:23:2",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 337,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "1172:7:2",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 340,
+                "name": "minIndex",
+                "nodeType": "VariableDeclaration",
+                "scope": 341,
+                "src": "1205:16:2",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 339,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "1205:7:2",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              }
+            ],
+            "name": "Edge",
+            "nodeType": "StructDefinition",
+            "scope": 353,
+            "src": "906:373:2",
+            "visibility": "public"
+          },
+          {
+            "canonicalName": "Graph.WeightElement",
+            "id": 352,
+            "members": [
+              {
+                "constant": false,
+                "id": 343,
+                "name": "exchangeRate",
+                "nodeType": "VariableDeclaration",
+                "scope": 352,
+                "src": "1562:20:2",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 342,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "1562:7:2",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 345,
+                "name": "exchangeRateLog",
+                "nodeType": "VariableDeclaration",
+                "scope": 352,
+                "src": "1592:22:2",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_int256",
+                  "typeString": "int256"
+                },
+                "typeName": {
+                  "id": 344,
+                  "name": "int256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "1592:6:2",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_int256",
+                    "typeString": "int256"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 347,
+                "name": "reverse",
+                "nodeType": "VariableDeclaration",
+                "scope": 352,
+                "src": "1713:13:2",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint8",
+                  "typeString": "uint8"
+                },
+                "typeName": {
+                  "id": 346,
+                  "name": "uint8",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "1713:5:2",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint8",
+                    "typeString": "uint8"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 349,
+                "name": "sourceAmount",
+                "nodeType": "VariableDeclaration",
+                "scope": 352,
+                "src": "1792:20:2",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 348,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "1792:7:2",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 351,
+                "name": "agreementAddress",
+                "nodeType": "VariableDeclaration",
+                "scope": 352,
+                "src": "1822:24:2",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_address",
+                  "typeString": "address"
+                },
+                "typeName": {
+                  "id": 350,
+                  "name": "address",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "1822:7:2",
+                  "stateMutability": "nonpayable",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              }
+            ],
+            "name": "WeightElement",
+            "nodeType": "StructDefinition",
+            "scope": 353,
+            "src": "1527:368:2",
+            "visibility": "public"
+          }
+        ],
+        "scope": 354,
+        "src": "25:1872:2"
+      }
+    ],
+    "src": "0:1898:2"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.5.8+commit.23d335f2.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.0.16",
+  "updatedAt": "2019-11-04T09:45:02.161Z",
+  "devdoc": {
+    "methods": {}
+  },
+  "userdoc": {
+    "methods": {}
+  }
+}

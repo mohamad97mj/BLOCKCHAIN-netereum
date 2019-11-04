@@ -1,0 +1,40 @@
+
+/*bootstrap 3 media queries*/
+/* Large Devices (Desktops & Laptops) */
+
+@media (min-width: 1200px) {
+}
+
+
+@media (min-width: 922px) and (max-width: 1199px){
+
+
+}
+
+
+@media (min-width: 768px) and (max-width: 991px){
+
+    #bootstrap-overrides .navbar {
+        background: rgba(0, 0, 0, 0.7);
+        padding-left: 25px;
+        padding-right: 25px;
+        float: left;
+    }
+
+    #bootstrap-overrides .my-navbar-nav{
+        /*width: 100%;*/
+        padding-left: 5px;
+        padding-top: 10px;
+    }
+}
+
+@media (max-width: 767px) {
+}
+
+
+@media (max-width: 480px) {
+}
+
+
+@media (max-width: 320px) {
+}
