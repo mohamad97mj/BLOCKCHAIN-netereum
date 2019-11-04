@@ -74,6 +74,16 @@ App = {
 
 
         });
+
+        $.getJSON('MainGraph.json', function (MainGraph) {
+            App.contracts.MainGraph = TruffleContract(MainGraph);
+            App.contracts.MainGraph.setProvider(App.web3Provider);
+
+
+        });
+
+
+
     },
 
     bindEvents: async function () {
@@ -193,58 +203,52 @@ App = {
 
     },
 
-    showSpecialBox: function () {
-
-        var selectedBox = $("#signAs");
-        var signAs = selectedBox.options[selectedBox.selectedIndex].value;
-        var specialForm = document.getElementById("specialForm");
-
-        switch (signAs) {
-            case "coordinator":
-                specialForm.innerHTML = "<div id=\"specialForm\" class=\"form-group modal-form-item\">\n" +
-                    "\n" +
-                    "                            <label for=\"currency\" class=\"\">currency</label>\n" +
-                    "                            <select id=\"currency\" class=\"form-control  my-form-control form-control-blue\">\n" +
-                    "                                <option value=\"0\">Rial</option>\n" +
-                    "                                <option value=\"1\">Dollar</option>\n" +
-                    "                                <option value=\"2\">Ruble</option>\n" +
-                    "                                <option value=\"3\">Yuan</option>\n" +
-                    "                                <option value=\"4\">Euro</option>\n" +
-                    "\n" +
-                    "                            </select>\n" +
-                    "                        </div>";
-
-
-                break;
-
-            case "provider":
-                specialForm.innerHTML = "";
-                break;
-
-            case "customer":
-                specialForm.innerHTML = "";
-                break;
-        }
-
-        // alert(signAs);p
-    },
+    // showSpecialBox: function () {
+    //
+    //     var selectedBox = $("#signAs");
+    //     var signAs = selectedBox.options[selectedBox.selectedIndex].value;
+    //     var specialForm = document.getElementById("specialForm");
+    //
+    //     switch (signAs) {
+    //         case "coordinator":
+    //             specialForm.innerHTML = "<div id=\"specialForm\" class=\"form-group modal-form-item\">\n" +
+    //                 "\n" +
+    //                 "                            <label for=\"currency\" class=\"\">currency</label>\n" +
+    //                 "                            <select id=\"currency\" class=\"form-control  my-form-control form-control-blue\">\n" +
+    //                 "                                <option value=\"0\">Rial</option>\n" +
+    //                 "                                <option value=\"1\">Dollar</option>\n" +
+    //                 "                                <option value=\"2\">Ruble</option>\n" +
+    //                 "                                <option value=\"3\">Yuan</option>\n" +
+    //                 "                                <option value=\"4\">Euro</option>\n" +
+    //                 "\n" +
+    //                 "                            </select>\n" +
+    //                 "                        </div>";
+    //
+    //
+    //             break;
+    //
+    //         case "provider":
+    //             specialForm.innerHTML = "";
+    //             break;
+    //
+    //         case "customer":
+    //             specialForm.innerHTML = "";
+    //             break;
+    //     }
+    //
+    //     // alert(signAs);p
+    // },
 
     openTab: function (event, tabName) {
         // alert("hello");
         alert("role is : " + App.role);
         if (tabName == 'profile') tabName = App.role + '-' + tabName;
-        var i, tabcontent, tablinks;
+        var i, tabcontent;
         var className1 = App.role + "-tab-content";
         tabcontent = document.getElementsByClassName(className1);
         for (i = 0; i < tabcontent.length; i++) {
             tabcontent[i].style.display = "none";
         }
-
-        // var className2 = userType + "Tablink";
-        // tablinks = document.getElementsByClassName(className2);
-        // for (i = 0; i < tablinks.length; i++) {
-        //     tablinks[i].className = tablinks[i].className.replace(" active", "");
-        // }
         document.getElementById(tabName).style.display = "block";
         // event.currentTarget.className += " active";
     },
@@ -484,7 +488,7 @@ App = {
 
                     NetereumInstance.numberOfCreatedAgreements().then(function (numberOfAgreements) {
 
-                        App.coordinatorRemoveprevious-agreements-requestsRows();
+                        App.coordinatorRemoveprevious - agreements - requestsRows();
 
                         for (var i = 0; i < numberOfAgreements; i++) {
 
@@ -2284,6 +2288,27 @@ App = {
     // },
 
 
+    //admin functions ..................................................................................................
+
+    setMainGraphContractRequirements: function (address) {
+        App.contracts.MainGraph.deployed().then(async function (mainGraphInstance) {
+            await mainGraphInstance.setRequirements(address);
+        });
+    },
+
+    setNetereumContractRequirements : function(address) {
+        App.contracts.Netereum.deployed().then(async function (netereumInstance) {
+            await netereumInstance.setRequirements(address);
+        });
+    },
+
+    adminAddCoordinator: function(address) {
+        App.contracts.Netereum.deployed().then(async function (netereumInstance) {
+            await netereumInstance.addCoordinator(address);
+        });
+    },
+
+
 //shared functions .....................................................................................................
     //payment message event
 
@@ -2359,7 +2384,7 @@ App = {
                 switch (App.role) {
                     case "coordinator":
                         App.coordinatorLoadNewAgreementsRequests();
-                        App.coordinatorLoadprevious-agreements-requests();
+                        App.coordinatorLoadprevious - agreements - requests();
                         break;
 
                     case "provider":
@@ -2386,7 +2411,7 @@ App = {
 
                 switch (App.role) {
                     case "coordinator":
-                        App.coordinatorLoadnew-transactions-requests();
+                        App.coordinatorLoadnew - transactions - requests();
                         break;
 
                     case "customer":
@@ -2410,8 +2435,8 @@ App = {
 
                 switch (App.role) {
                     case "coordinator":
-                        App.coordinatorLoadnew-transactions-requests();
-                        App.coordinatorLoadprevious-transactions-requests();
+                        App.coordinatorLoadnew - transactions - requests();
+                        App.coordinatorLoadprevious - transactions - requests();
                         break;
 
                     case "provider":

@@ -109,7 +109,8 @@
                                                         General
     =================================================================================================================-->
     <link rel="shortcut icon" href="img/favicon.ico">
-    <link rel="stylesheet" href="css/test.css">
+    <link rel="stylesheet" href="css/app.css">
+    <link rel="stylesheet" href="css/general.css">
     <link rel="stylesheet" href="css/responsive.css">
     <script src="js/test.js"></script>
     <script src="js/custom.js"></script>
@@ -832,24 +833,61 @@
 
                 </div>
 
-                <div id="admin-right-content" class="right-content col-md-10">
-                    <div id="contracts-management" class="admin-tab-content tab-content">
-                        <div>
-                            <button class="btn btn-blue btn-general btn-default-size text-center add-row-btn"
-                                    onclick="App.setNetereumContract()">Set Netereum
-                            </button>
-                        </div>
-                        <div>
-                            <button class="btn btn-blue btn-general btn-default-size text-center add-row-btn"
-                                    onclick="App.setMainGraphContract()">Set MainGraph
-                            </button>
+                <div id="admin-right-content" class="right-content col-md-10 font-weight-bold">
+                    <div id="contracts-management" class="admin-tab-content tab-content center-content row ">
+                        <div class="col-md-12 my-container">
+                            <div class="">
+
+                                <form action="#">
+                                    <div class="form-group">
+                                        <!--                                    <p>Set Netereum Contract Requirements</p>-->
+                                        <label class="form-item">
+                                            Set MainGraph Contract Address
+                                        </label>
+                                        <input type="text" placeholder="Netereum contract address"
+                                               class="form-item my-form-control form-control form-control-blue">
+
+                                        <div class="text-center form-item">
+                                            <button class="btn btn-blue btn-general btn-default-size text-center btn-block"
+                                                    onclick="App.setNetereumContractRequirements()">Set
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="">
+                                <form action="#">
+                                    <div class="form-group">
+                                        <!--                                    <p>Set MainGraph Contract Requirements</p>-->
+                                        <label class="form-item">
+                                            Set Netereum Contract Address
+                                        </label>
+                                        <input type="text" placeholder="MainGraph contract address"
+                                               class="form-item my-form-control form-control form-control-blue">
+
+                                        <div class="text-center form-item">
+                                            <button class="btn btn-blue btn-general btn-default-size text-center btn-block"
+                                                    onclick="App.setMainGraphContractRequirements()">Set
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+
+                            </div>
                         </div>
                     </div>
                     <div id="coordinators-management" class="admin-tab-content tab-content">
-                        <div>
-                            <button class="btn btn-blue btn-general btn-default-size text-center add-row-btn"
-                                    onclick="App.addCoordinator()">Add Coordinator
-                            </button>
+                        <div class="col-md-12 my-container">
+                            <label class="form-item">
+                                Add Coordinator
+                            </label>
+                            <input type="text" placeholder="coordinator address"
+                                   class="form-item my-form-control form-control form-control-blue">
+                            <div class="text-center form-item">
+                                <button class="btn btn-blue btn-general btn-default-size btn-block"
+                                        onclick="App.adminAddCoordinator()">Add
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -1559,7 +1597,7 @@
                 </div>
                 <div class="col-md-6">
                     <div id="contact-right">
-                        <form class="my-form x" action="#">
+                        <form action="#">
                             <div class="form-group">
                                 <h3 class="form-item">Contact Us</h3>
 
@@ -1704,32 +1742,35 @@
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
-                            <h5 class="text-center modal-form-item font-weight-bold" id="ex2">Welcome Back!</h5>
+                            <div class="modal-container">
+                                <h5 class="text-center modal-form-item font-weight-bold" id="ex2">Welcome Back!</h5>
 
-                            <label class="" for="loginAs">Login as </label>
-                            <select id="loginAs" class="modal-form-item form-control my-form-control form-control-blue">
-                                <option value="coordinator">coordinator</option>
-                                <option value="provider">provider</option>
-                                <option value="customer">customer</option>
-                                <option value="admin">admin</option>
-                            </select>
+                                <label class="" for="loginAs">Login as </label>
+                                <select id="loginAs"
+                                        class="modal-form-item form-control my-form-control form-control-blue">
+                                    <option value="coordinator">coordinator</option>
+                                    <option value="provider">provider</option>
+                                    <option value="customer">customer</option>
+                                    <option value="admin">admin</option>
+                                </select>
 
-                            <div class="modal-form-item">
-                                <button id="loginBtn" class="btn btn-sm btn-bg-blue btn-block btn-blue font-weight-bold"
-                                        type="button"
-                                        data-dismiss="modal" onclick="App.login()">
-                                    log in
-                                </button>
+                                <div class="modal-form-item">
+                                    <button id="loginBtn"
+                                            class="btn btn-sm btn-bg-blue btn-block btn-blue font-weight-bold btn-general"
+                                            type="button"
+                                            data-dismiss="modal" onclick="App.login()">
+                                        log in
+                                    </button>
+                                </div>
+
+                                <!--                            <h6 class="text-center modal-form-item">Don't have an account?-->
+                                <!--                                <span>-->
+                                <!--                                    <button id="#" class="btn btn-sm font-weight-bold" data-dismiss="modal"-->
+                                <!--                                            data-toggle="modal"-->
+                                <!--                                            href="#signUpModal">Sign up</button>-->
+                                <!--                                </span>-->
+                                <!--                            </h6>-->
                             </div>
-
-                            <h6 class="text-center modal-form-item">Don't have an account?
-                                <span>
-                                    <button id="#" class="btn btn-sm font-weight-bold" data-dismiss="modal"
-                                            data-toggle="modal"
-                                            href="#signUpModal">Sign up</button>
-                                </span>
-                            </h6>
-
                         </div>
                     </form>
                 </div>

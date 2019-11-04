@@ -6,16 +6,16 @@ contract MainGraph {
     using SafeMath for uint256;
     int256 public constant MAX_INT = int256(~(uint256(1) << 255));
     uint256 constant MAX_UINT = ~uint256(0);
-    address public NetereumAddress;
+    address public netereumAddress;
     address[] confirmedCoordinators;
     uint256 public numberOfCoordinators = 0;
 //    constructor(address _NetereumAddress) public
 //    {
 //        NetereumAddress = _NetereumAddress;
 //    }
-    function set(address addr) public
+    function setRequirements(address addr) public
     {
-        NetereumAddress = addr;
+        netereumAddress = addr;
     }
     mapping(address => Graph.Node) public  nodes;
     mapping(uint256 => Graph.Edge)  public edges;
@@ -23,7 +23,7 @@ contract MainGraph {
     uint256 public numberOfEdges;
     function addNode(address coordinator) public
     {
-        require(msg.sender == NetereumAddress);
+        require(msg.sender == netereumAddress);
         nodes[coordinator].coordinator = coordinator;
         numberOfNodes ++;
         nodes[coordinator].isInserted = true;
@@ -232,7 +232,7 @@ contract MainGraph {
     function wrappedAddEdge(address sourceCoordinator, address destinationCoordinator,
         uint256 exchangeRate,int256 exchangeRateLog,uint8 reverse,uint256 sourceAmount,address agreementAddress) public
     {
-        require(msg.sender == NetereumAddress);
+        require(msg.sender == netereumAddress);
         require(nodes[sourceCoordinator].isInserted == true, "3");
         require(nodes[destinationCoordinator].isInserted == true, "4");
         addEdge(sourceCoordinator,destinationCoordinator,
@@ -341,7 +341,7 @@ contract MainGraph {
     }
     function wrappedRemoveEdge(uint256 index, uint256 sourceAmount,address agreementAddress,uint8 flag) public returns(uint256)
     {
-        require(msg.sender == NetereumAddress);
+        require(msg.sender == netereumAddress);
         return removeEdge(index,sourceAmount,agreementAddress,flag);
     }
     address[] public  path;
@@ -350,7 +350,7 @@ contract MainGraph {
     function maxFund(address _buyerCoordinator, address _sellerCoordinator,uint256 _buyerCost,
         uint256 _sellerCost,bool virtual) public returns (bool,uint256)
     {
-        require(msg.sender == NetereumAddress);
+        require(msg.sender == netereumAddress);
 //                for(uint256 i = numberOfAgreements - 1;i >= 0; i--)//removing the agreements and edges that have expired
 //                {
 //                    if(agreements[i].expireTime() < block.timestamp)

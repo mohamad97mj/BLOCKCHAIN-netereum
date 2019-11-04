@@ -28,7 +28,7 @@ contract Netereum
         toolFactory = new ToolFactory();
         tool = toolFactory.create();
     }
-    function setMainGraph(address mainGraphAddress) public
+    function setRequirements(address mainGraphAddress) public
     {
         require(msg.sender == owner);
         mainGraph = MainGraph(address (mainGraphAddress));
