@@ -1,5 +1,7 @@
 pragma solidity ^ 0.5.0;
+
 import "./Netereum.sol";
+
 contract Agreement
 {
     uint256 public expireTime;
@@ -7,102 +9,86 @@ contract Agreement
     address public creditor;
     address public debtorCoordinator;
     address public creditorCoordinator;
-    uint256 public debtorCost;
+    uint256 public debtAmount;
     uint256 public exchangeRate;
     uint public creditorPermission = 0;
     uint public debtorCoordinatorPermission = 0;
     uint public creditorCoordinatorPermission = 0;
     uint8 public counterPermission = 1;
-    address public barterCubeAddress;
-    bool public barterCubeCalled = false;
-    uint8 public declinedBy = 0;
+    address public netereumAddress;
+    bool public netereumCalled = false;
 
-//    function decline() public {
-//
-//        require(declinedBy == 0, "20");
-//        require(msg.sender == creditor || msg.sender == debtorCoordinator || msg.sender == creditorCoordinator, "17");
-//
-//        if (msg.sender == creditor && !creditorPermission)
-//        {
-//            declinedBy = 2;
-//            //BarterCube(barterCubeAddress).declineAgreement(address(this));
-//        }
-//        else if (msg.sender == debtorCoordinator && !debtorC
-//        if (msg.sender == debtorCoordinator && debtorCoordinatorPermission == 0)
-//        {
-//            counterPermission ++;
-//            debtorCoordinatorPermission = 1;
-//            //BarterCube(barterCubeAddress).approveAgreement(address(this));
-//        }
-//        if (msg.sender == creditorCoordinator && creditorCoordinatorPermission == 0)
-//        {
-//            counterPermission++;
-//            creditorCoordinatorPermission = 1;
-//            //BarterCube(barterCubeAddress).approveAgreement(address(this));
-//        }
-//        if (!barterCubeCalled && counterPermission == 4)
-//        {oordinatorPermission)
-//        {
-//            declinedBy = 3;
-//            //BarterCube(barterCubeAddress).declineAgreement(address(this));
-//        }
-//        else if (msg.sender == creditorCoordinator && !creditorCoordinatorPermission)
-//        {
-//            declinedBy = 4;
-//            //BarterCube(barterCubeAddress).declineAgreement(address(this));
-//        }
-//    }
-    //uint256 public numOfToken;
+    function decline() public {
+
+        require(msg.sender == creditor || msg.sender == debtorCoordinator || msg.sender == creditorCoordinator, "17");
+
+        if (msg.sender == creditor && creditorPermission == 0)
+        {
+            creditorPermission = 2;
+        }
+        else if (msg.sender == debtorCoordinator && debtorCoordinatorPermission == 0)
+        {
+            debtorCoordinatorPermission = 2;
+        }
+        else if (msg.sender == creditorCoordinator && creditorCoordinatorPermission == 0)
+        {
+            creditorCoordinatorPermission = 2;
+        }
+
+        if(!netereumCalled){
+            netereumCalled = true;
+            Netereum(netereumAddress).declineAgreement(address(this));
+        }
+    }
+
     function approve() public
     {
-        require(declinedBy == 0, "16");
         require(
             msg.sender == creditor || msg.sender == debtorCoordinator || msg.sender == creditorCoordinator, "17");
         if (msg.sender == creditor && creditorPermission == 0)
         {
             counterPermission++;
             creditorPermission = 1;
-            //BarterCube(barterCubeAddress).approveAgreement(address(this));
+            //BarterCube(netereumAddress).approveAgreement(address(this));
         }
-        if (msg.sender == debtorCoordinator && debtorCoordinatorPermission == 0)
+        else if (msg.sender == debtorCoordinator && debtorCoordinatorPermission == 0)
         {
             counterPermission ++;
             debtorCoordinatorPermission = 1;
-            //BarterCube(barterCubeAddress).approveAgreement(address(this));
+            //BarterCube(netereumAddress).approveAgreement(address(this));
         }
-        if (msg.sender == creditorCoordinator && creditorCoordinatorPermission == 0)
+        else if (msg.sender == creditorCoordinator && creditorCoordinatorPermission == 0)
         {
             counterPermission++;
             creditorCoordinatorPermission = 1;
-            //BarterCube(barterCubeAddress).approveAgreement(address(this));
+            //BarterCube(netereumAddress).approveAgreement(address(this));
         }
-        if (!barterCubeCalled && counterPermission == 4)
+        if (!netereumCalled && counterPermission == 4)
         {
-            barterCubeCalled = true;
-            Netereum(barterCubeAddress).addAgreement(address(this));
+            netereumCalled = true;
+            Netereum(netereumAddress).addAgreement(address(this));
         }
     }
 
     constructor(
-        address  _debtor,address _creditor,
-        address  _debtorCoordinator,address  _creditorCoordinator,
-        uint256 _debtorCost,uint256 _exchangeRate,uint256 _expireTime,address _barterCubeAddress)
+        address _debtor, address _creditor,
+        address _debtorCoordinator, address _creditorCoordinator,
+        uint256 _debtAmount, uint256 _exchangeRate, uint256 _expireTime, address _netereumAddress)
     public
     {
         debtor = _debtor;
         creditor = _creditor;
         debtorCoordinator = _debtorCoordinator;
         creditorCoordinator = _creditorCoordinator;
-        debtorCost = _debtorCost;
+        debtAmount = _debtAmount;
         exchangeRate = _exchangeRate;
         expireTime = _expireTime;
-        barterCubeAddress = _barterCubeAddress;
-        //numOfToken = _numOfToken;
+        netereumAddress = _netereumAddress;
     }
 
-    function changeCost(uint256 _debtorCost) public
+    function changeCost(uint256 _debtAmount) public
     {
-        require(msg.sender == barterCubeAddress);
-        debtorCost = _debtorCost;
+        require(msg.sender == netereumAddress);
+        debtAmount = _debtAmount;
     }
 }

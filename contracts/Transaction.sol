@@ -12,13 +12,15 @@ contract Transaction
     address public sellerCoordinator;
     uint256 public buyerCost;
     uint256 public sellerCost;
-    address public barterCubeAddress;
-    bool public barterCubeCalled = false;
+    address public netereumAddress;
+    bool public netereumCalled = false;
     uint8 public declinedBy = 0;
+
     function approve() public
     {
         require(msg.sender == seller || msg.sender == sellerCoordinator || msg.sender == buyerCoordinator, "19");
         require(declinedBy == 0, "22");
+
         if(msg.sender == seller && sellerPermission == 0)
         {
             sellerPermission = 1;
@@ -35,33 +37,32 @@ contract Transaction
             counterPermission++;
         }
         // if all the four sides of a transactions have agreed, then the transaction will be done buy the barterCube if possible
-        if(!barterCubeCalled && counterPermission == 4)
+        if(!netereumCalled && counterPermission == 4)
         {
-            barterCubeCalled = true;
-            Netereum(barterCubeAddress).doTransaction(address (this));//needs to be modified
+            netereumCalled = true;
+            Netereum(netereumAddress).doTransaction(address (this));//needs to be modified
         }
     }
     function decline() public {
 
         require(msg.sender == seller || msg.sender == sellerCoordinator || msg.sender == buyerCoordinator, "19");
         require(declinedBy == 0, "22");
+
         if(msg.sender == seller&& sellerPermission == 0)
         {
-            declinedBy = 2;
             sellerPermission == 2;
-            //BarterCube(barterCubeAddress).declineTransaction(address(this));
         }
         else if(msg.sender == sellerCoordinator && sellerCoordinatorPermission == 0)
         {
             sellerCoordinatorPermission == 2;
-            declinedBy = 3;
-            //BarterCube(barterCubeAddress).declineTransaction(address(this));
         }
         else if(msg.sender == buyerCoordinator && buyerCoordinatorPermission == 0)
         {
             buyerCoordinatorPermission == 2;
-            declinedBy = 4;
-            //BarterCube(barterCubeAddress).declineTransaction(address(this));
+        }
+
+        if(!netereumCalled){
+            Netereum(netereumAddress).declineTransaction(address(this));
         }
     }
 
@@ -72,14 +73,11 @@ contract Transaction
         sellerCoordinatorPermission = 0;
         buyerCoordinatorPermission = 0;
     }
-    // expire date should be created to
-    //uint256 public sellerFee;
-    // public buyerMaxFee;
-    //uint256 public sellerMaxFee;
+
     constructor(
         address  _buyer,address  _seller,
         address  _buyerCoordinator,address _sellerCoordinator,
-        uint256 _buyerCost,uint256 _sellerCost,address _barterCubeAddress)
+        uint256 _buyerCost,uint256 _sellerCost,address _netereumAddress)
     public
     {
         buyer = _buyer;
@@ -88,7 +86,7 @@ contract Transaction
         sellerCoordinator = _sellerCoordinator;
         buyerCost = _buyerCost;
         sellerCost = _sellerCost;
-        barterCubeAddress = _barterCubeAddress;
+        netereumAddress = _netereumAddress;
         // sellerFee = _sellerFee;
         //buyerMaxFee = _buyerMaxFee;
         //sellerMaxFee = _sellerMaxFee;
@@ -96,7 +94,7 @@ contract Transaction
     function setMaxFund(uint256 newBuyerCost) public
     {
         require(msg.sender == buyer);
-        require(Netereum(barterCubeAddress).transactionsStatus(address(this)) == 1, "9");
+        require(Netereum(netereumAddress).transactionsStatus(address(this)) == 1, "9");
         reset();
         buyerCost = newBuyerCost;
     }

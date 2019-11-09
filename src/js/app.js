@@ -240,7 +240,7 @@ App = {
                                 if (flag) {
 
                                     var dateTime = "2 minutes ago";
-                                    var debtAmount = await instance.debtorCost();
+                                    var debtAmount = await instance.debtAmount();
                                     var view = "some views";
                                     var exchangeRate = await instance.exchangeRate();
                                     App.addNewAgreementRequestRow(agreementAddress, dateTime, providerAccount, roleInAgreement, partner, partnerCoordinator, debtAmount, exchangeRate, view);
@@ -383,7 +383,7 @@ App = {
 
                                         if (flag) {
 
-                                            var debtAmount = await instance.debtorCost();
+                                            var debtAmount = await instance.debtAmount();
                                             var view = "some views";
                                             var dateTime = "2 minutes ago";
                                             var exchangeRate = await instance.exchangeRate();
@@ -843,7 +843,7 @@ App = {
 
                                     if (flag) {
 
-                                        var debtAmount = await instance.debtorCost();
+                                        var debtAmount = await instance.debtAmount();
                                         var exchangeRate = await instance.exchangeRate();
                                         var expireTime = 100;
 
@@ -942,7 +942,7 @@ App = {
                                     var debtorAccount = await instance.debtor();
                                     var debtorCoordinator = await instance.debtorCoordinator();
                                     var creditorCoordinator = await instance.creditorCoordinator();
-                                    var debtAmount = await instance.debtorCost();
+                                    var debtAmount = await instance.debtAmount();
                                     var exchangeRate = await instance.exchangeRate();
                                     var details = "some details";
 

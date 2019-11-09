@@ -36,12 +36,14 @@ contract Netereum
     //uint256 barterTime = 15669098070;
     address[] confirmedCoordinators;
     mapping(address => bool) isCoordinatorInserted;
+
     mapping(address => Transaction) createdTransactions;// these are all the transactions that have been created
     address [] public createdTransactionsAddress;
     mapping(address => uint8) public transactionsStatus ;// 0: not created  1:created 2: pending 3:added 4:declined:
+
     mapping(address => Agreement) createdAgreements;// these are all the Agreements that have been created
-    mapping(address => uint8) public agreementsStatus;// 0: not created 1:offered 2:pending 3:expired 4:declined 5:altering
     address [] public createdAgreementsAddress;
+    mapping(address => uint8) public agreementsStatus;// 0: not created 1:offered 2:pending 3:expired 4:declined 5:altering
 
     //mapping(address => bool) agreementExists;// this mapping shows if an agreement with a specific address has been created or not
     //mapping(address => bool) isAgreementAdded;// this mapping shows if an agreement has been added to the final agreements(for preventing that an agreement is added multiple times)
@@ -76,7 +78,7 @@ contract Netereum
 
     function createAgreement(address _debtor, address _creditor,
         address _debtorCoordinator, address _creditorCoordinator,
-        uint256 _debtorCost, uint256 _exchangeRate ,uint256 _expireTime,address agreementAddress)/*if the last field isn't 0, then this means that an agreement
+        uint256 _debtAmount, uint256 _exchangeRate ,uint256 _expireTime,address agreementAddress)/*if the last field isn't 0, then this means that an agreement
         that has already been submitted needs to be change*/
     public returns(address)
     {
@@ -87,7 +89,7 @@ contract Netereum
             require(isCoordinatorInserted[_debtorCoordinator] == true, "3");
             require(isCoordinatorInserted[_creditorCoordinator] == true, "4");
 //            require(_expireTime > block.timestamp,"5");
-            cost = _debtorCost;
+            cost = _debtAmount;
         }
         else
         {
@@ -125,7 +127,7 @@ contract Netereum
         numberOfAgreements++;
         mainGraph.wrappedAddEdge(createdAgreements[agreementAddress].creditorCoordinator(), createdAgreements[agreementAddress].debtorCoordinator(),
             createdAgreements[agreementAddress].exchangeRate(),tool.logarithm(int256(createdAgreements[agreementAddress].exchangeRate())),0,
-            createdAgreements[agreementAddress].debtorCost() ,address(agreementAddress));
+            createdAgreements[agreementAddress].debtAmount() ,address(agreementAddress));
     }
 
     function createTransaction(address _buyer, address _seller,
@@ -200,10 +202,6 @@ contract Netereum
     //        (temp,returnValue) = maxFund(_buyerCoordinator,_sellerCoordinator,0, _sellerCost,true);
     //        return returnValue;
     //    }
-
-//    function approveAgreement(address agreement) public{
-//        agreementsStatus[agreement] = 2;
-//    }
 
     function declineAgreement(address agreementAddress) public {
         require(agreementsStatus[agreementAddress] == 1, "14");
