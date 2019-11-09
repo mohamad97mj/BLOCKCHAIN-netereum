@@ -6,16 +6,16 @@ contract MainGraph {
     using SafeMath for uint256;
     int256 public constant MAX_INT = int256(~(uint256(1) << 255));
     uint256 constant MAX_UINT = ~uint256(0);
-    address public netereumAddress;
+    address public barterCubeAddress;
     address[] confirmedCoordinators;
     uint256 public numberOfCoordinators = 0;
-//    constructor(address _NetereumAddress) public
-//    {
-//        NetereumAddress = _NetereumAddress;
-//    }
-    function setRequirements(address addr) public
+    //    constructor(address _barterCubeAddress) public
+    //    {
+    //        barterCubeAddress = _barterCubeAddress;
+    //    }
+    function setNetereum(address addr) public
     {
-        netereumAddress = addr;
+        barterCubeAddress = addr;
     }
     mapping(address => Graph.Node) public  nodes;
     mapping(uint256 => Graph.Edge)  public edges;
@@ -23,7 +23,7 @@ contract MainGraph {
     uint256 public numberOfEdges;
     function addNode(address coordinator) public
     {
-        require(msg.sender == netereumAddress);
+        require(msg.sender == barterCubeAddress);
         nodes[coordinator].coordinator = coordinator;
         numberOfNodes ++;
         nodes[coordinator].isInserted = true;
@@ -155,8 +155,8 @@ contract MainGraph {
                                 cycle[cycleLength] = tempDestination;
                                 cycle[cycleLength + 1] = nodes[tempDestination].parent;
                                 cycleLength += 2;
-//                                path.push(tempDestination);
-//                                path.push(nodes[tempDestination].parent);
+                                //                                path.push(tempDestination);
+                                //                                path.push(nodes[tempDestination].parent);
                                 tempDestination = nodes[tempDestination].parent;
                                 if(tempDestination == tempDestination2)
                                     break;
@@ -196,7 +196,7 @@ contract MainGraph {
                                             transferAmount++;
                                     }
                                 }
-//                                pathAmounts[cycleLength - 1 - i] = transferAmount;
+                                //                                pathAmounts[cycleLength - 1 - i] = transferAmount;
                                 if(i == 1)
                                     break;
                             }
@@ -215,11 +215,11 @@ contract MainGraph {
                                 else
                                 {
                                     transferAmount = (transferAmount * 1000000)/edges[index].weights[edges[index].minIndex].exchangeRate;
-//                                    if(edges[index].weights[edges[index].minIndex].exchangeRate % 1000000 != 0)
-//                                        transferAmount ++;
+                                    //                                    if(edges[index].weights[edges[index].minIndex].exchangeRate % 1000000 != 0)
+                                    //                                        transferAmount ++;
                                     removeEdge(index,transferAmount,address(0),uint8(0));
                                 }
-//                                pathAmounts[pathLength / 2] = transferAmount;
+                                //                                pathAmounts[pathLength / 2] = transferAmount;
                             }
                         }
                         //break;
@@ -232,7 +232,7 @@ contract MainGraph {
     function wrappedAddEdge(address sourceCoordinator, address destinationCoordinator,
         uint256 exchangeRate,int256 exchangeRateLog,uint8 reverse,uint256 sourceAmount,address agreementAddress) public
     {
-        require(msg.sender == netereumAddress);
+        require(msg.sender == barterCubeAddress);
         require(nodes[sourceCoordinator].isInserted == true, "3");
         require(nodes[destinationCoordinator].isInserted == true, "4");
         addEdge(sourceCoordinator,destinationCoordinator,
@@ -341,28 +341,29 @@ contract MainGraph {
     }
     function wrappedRemoveEdge(uint256 index, uint256 sourceAmount,address agreementAddress,uint8 flag) public returns(uint256)
     {
-        require(msg.sender == netereumAddress);
+        require(msg.sender == barterCubeAddress);
         return removeEdge(index,sourceAmount,agreementAddress,flag);
     }
     address[] public  path;
+    uint256 public amounttt;
     mapping(uint256 => uint256) public pathAmounts;
     uint256 public pathLength;
     function maxFund(address _buyerCoordinator, address _sellerCoordinator,uint256 _buyerCost,
         uint256 _sellerCost,bool virtual) public returns (bool,uint256)
     {
-        require(msg.sender == netereumAddress);
-//                for(uint256 i = numberOfAgreements - 1;i >= 0; i--)//removing the agreements and edges that have expired
-//                {
-//                    if(agreements[i].expireTime() < block.timestamp)
-//                    {
-//                        removeEdge(0,0,address(agreements[i]),2);
-////                        agreementStatus[address(agreements[i])] = 3;//expired
-////                        agreements[i] = agreements[numberOfAgreements - 1];//needs to be Checkeddddd
-////                        agreements.pop();
-//                    }
-//                    if(i == 0)
-//                        break;
-//                }
+        require(msg.sender == barterCubeAddress);
+        //                for(uint256 i = numberOfAgreements - 1;i >= 0; i--)//removing the agreements and edges that have expired
+        //                {
+        //                    if(agreements[i].expireTime() < block.timestamp)
+        //                    {
+        //                        removeEdge(0,0,address(agreements[i]),2);
+        ////                        agreementStatus[address(agreements[i])] = 3;//expired
+        ////                        agreements[i] = agreements[numberOfAgreements - 1];//needs to be Checkeddddd
+        ////                        agreements.pop();
+        //                    }
+        //                    if(i == 0)
+        //                        break;
+        //                }
 
         if(pathLength > 0)
         {
@@ -527,40 +528,43 @@ contract MainGraph {
             }
             sum += minAmount;
             pathStart = pathLength;
+            amounttt = amount;
         }
-                if (amount > _buyerCost || virtual)//changing the graph to the previous state //BE CAREFUL HEREEEEEE
+        if (amount > _buyerCost || virtual)//changing the graph to the previous state //BE CAREFUL HEREEEEEE
+        {
+            // neutralizing the effects that our computation had on the graph
+            for (uint256 i = pathLength - 1; i >= 1; i -= 2)
+            {
+                uint256 index = edgeIndex[path[i - 1]][path[i]] -1;
+
+                if(edges[index].weights[edges[index].minIndex].reverse == 0)
                 {
-                    // neutralizing the effects that our computation had on the graph
-                    for (uint256 i = pathLength - 1; i >= 1; i -= 2)
-                    {
-                        uint256 index = edgeIndex[path[i - 1]][path[i]] -1;
+                    addEdge(path[i],path[i-1],
+                        edges[index].weights[edges[index].minIndex].exchangeRate,
+                        -1 * edges[index].weights[edges[index].minIndex].exchangeRateLog,
+                        1,pathAmounts[i-1],
+                        edges[index].weights[edges[index].minIndex].agreementAddress,0);
+                    removeEdge(index,pathAmounts[i],address(0),0);
 
-                        if(edges[index].weights[edges[index].minIndex].reverse == 0)
-                        {
-                            addEdge(path[i],path[i-1],
-                                edges[index].weights[edges[index].minIndex].exchangeRate,
-                                -1 * edges[index].weights[edges[index].minIndex].exchangeRateLog,
-                                1,pathAmounts[i-1],
-                                edges[index].weights[edges[index].minIndex].agreementAddress,0);
-                            removeEdge(index,pathAmounts[i],address(0),0);
-
-                        }
-                        else
-                        {
-                            addEdge(path[i],path[i-1],
-                                edges[index].weights[edges[index].minIndex].exchangeRate,
-                                -1 * edges[index].weights[edges[index].minIndex].exchangeRateLog,
-                                0,pathAmounts[i-1],
-                                edges[index].weights[edges[index].minIndex].agreementAddress,0);
-                            removeEdge(index,pathAmounts[i],address(0),0);
-                        }
-                        if(i == 1)
-                            break;
-                    }
-                    return (false,amount);
                 }
                 else
-        return (true,amount);
+                {
+                    addEdge(path[i],path[i-1],
+                        edges[index].weights[edges[index].minIndex].exchangeRate,
+                        -1 * edges[index].weights[edges[index].minIndex].exchangeRateLog,
+                        0,pathAmounts[i-1],
+                        edges[index].weights[edges[index].minIndex].agreementAddress,0);
+                    removeEdge(index,pathAmounts[i],address(0),0);
+                }
+                if(i == 1)
+                    break;
+            }
+            amounttt = 1;
+            return (false,amount);
+        }
+        else
+            return (true,amount);
+
     }
     function getParent(address addr) public returns(address)
     {

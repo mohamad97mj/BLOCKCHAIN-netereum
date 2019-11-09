@@ -43,8 +43,32 @@ p {
     font-weight: lighter;
 }
 
+/*#bootstrap-overrides td {*/
+/*    padding: 0;*/
+/*    margin: 0;*/
+/*    vertical-align: middle;*/
+/*}*/
+
+#bootstrap-overrides .question-mark-span {
+    margin-left: -15px;
+    text-align: left;
+}
+
+#bootstrap-overrides th, td{
+    vertical-align: middle;
+    text-align: center;
+}
+
+#bootstrap-overrides td {
+    font-size: small;
+}
+
 .my-container {
     padding: 100px;
+}
+
+#logged-in-content {
+    display: none;
 }
 
 .horizontal-align {
@@ -65,8 +89,6 @@ p {
 }
 
 #bootstrap-overrides .td-button{
-    max-width: 100px;
-    width: 100px;
     height: 50px;
     border-radius: 0;
 }
@@ -93,6 +115,10 @@ p {
     background-color: #34c6d3;
 }
 
+.display-none {
+    display: none;
+}
+
 /*======================================================================================================================
                                                       HOME
  =====================================================================================================================*/
@@ -100,7 +126,6 @@ p {
 
 #home {
     height: 100vh;
-
 }
 
 #home-cover {
@@ -215,6 +240,12 @@ p {
     width: 300px;
     align-content: center;
 }
+
+.custom-btn:hover  {
+    cursor: pointer;
+}
+
+
 
 /* check box */
 

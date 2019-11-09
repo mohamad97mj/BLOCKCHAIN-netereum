@@ -4,35 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <title>Netereum</title>
-
-
-    <!-- Bootstrap -->
-    <!--    <link href="css/bootstrap.css" rel="stylesheet">-->
-    <!--    <link href="css/bootstrap-grid.css" rel="stylesheet">-->
-    <!--    <link href="css/bootstrap-reboot.css" rel="stylesheet">-->
-    <!--    <link href="css/myCss.css" rel="stylesheet">-->
-
-    <!--    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"-->
-    <!--          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">-->
-    <!--    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"-->
-    <!--            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"-->
-    <!--            crossorigin="anonymous"></script>-->
-    <!--    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"-->
-    <!--            integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"-->
-    <!--            crossorigin="anonymous"></script>-->
-    <!--    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"-->
-    <!--            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"-->
-    <!--            crossorigin="anonymous"></script>-->
-
-
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-
-    <!--    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>-->
-    <!--    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script> -->
-
 
     <!--================================================================================================================
                                                   jquery cdn
@@ -131,7 +103,7 @@
 
 <div id="main-content">
 
-    <div id="logged-in-content" style="display: none">
+    <div id="logged-in-content">
 
         <header>
             <nav class="navbar navbar-dark navbar-expand-lg navbar-transparent">
@@ -153,7 +125,7 @@
                     </form>
 
                     <ul class="navbar-nav nav-list my-navbar-nav">
-                        <li class="nav-item dropdown" style="float: right">
+                        <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span id="signed-as"></span>
@@ -172,7 +144,7 @@
             </nav>
         </header>
 
-        <section id="user-control-panel" style="">
+        <section id="user-control-panel">
 
             <div class="row no-gutters">
                 <div id="coordinator-left-content" class="left-content col-md-2">
@@ -190,7 +162,7 @@
 
                         <li class="nav-item separator">
                             <a class="nav-link" href="#"
-                               onclick="App.openTab(event, 'previous-agreements-requests'); App.coordinatorLoadPreviousAgreementsRequests()">Recent
+                               onclick="App.openTab(event, 'recent-agreements-requests'); App.coordinatorLoadRecentAgreementsRequests()">Recent
                                 Agreements</a>
                         </li>
 
@@ -206,7 +178,7 @@
 
                         <li class="nav-item separator">
                             <a class="nav-link" href="#"
-                               onclick="App.openTab(event, 'previous-transactions-requests'); App.coordinatorLoadPreviousTransactionsRequests()">Recent
+                               onclick="App.openTab(event, 'recent-transactions-requests'); App.coordinatorLoadRecentTransactionsRequests()">Recent
                                 transactions</a>
                         </li>
 
@@ -214,32 +186,34 @@
                         <!--                <a class="nav-link disabled" href="#">Payments</a>-->
                         <!--            </li>-->
 
-                        <li class="nav-item">
-                            <a class="nav-link" href="#"
-                               onclick="App.openTab(event, 'coordinator-payment-messages'); App.coordinatorLoadPaymentMessages()">Payment
-                                messages</a>
-                        </li>
+                        <!--                        <li class="nav-item">-->
+                        <!--                            <a class="nav-link" href="#"-->
+                        <!--                               onclick="App.openTab(event, 'coordinator-payment-messages'); App.coordinatorLoadPaymentMessages()">Payment-->
+                        <!--                                messages</a>-->
+                        <!--                        </li>-->
                     </ul>
                 </div>
                 <div id="coordinator-right-content" class="right-content col-md-10">
 
-                    <div id="new-agreements-requests" class="coordinator-tab-content tab-content" style="display: none">
+                    <div id="new-agreements-requests" class="coordinator-tab-content tab-content">
 
                         <div class="table-responsive-md">
 
-                            <table class="table table-striped" id="newAgreementsRequestsTable">
+                            <table class="table table-striped" id="new-agreements-requests-table">
                                 <thead>
                                 <tr class="table-danger">
 
-                                    <th class="text-center">#</th>
-                                    <th class="text-center">Data/Time</th>
-                                    <th class="text-center">provider</th>
-                                    <th class="text-center">Role in agreement</th>
-                                    <th class="text-center">Partner</th>
-                                    <th class="text-center">Debt amount</th>
-                                    <th class="text-center">Fee</th>
-                                    <th class="text-center">View</th>
-                                    <th class="text-center">Approve/Decline</th>
+                                    <th class="">#</th>
+                                    <!--                                    <th class="">Data/Time</th>-->
+                                    <th class="">Provider</th>
+                                    <th class="">Role In Agreement</th>
+                                    <th class="">Partner</th>
+                                    <th class="">Partner's Coordinator</th>
+                                    <th class="">Debt Amount</th>
+                                    <th class="">Exchange Rate</th>
+                                    <!--                                    <th class="">View</th>-->
+                                    <th class="border-right-0"></th>
+                                    <th class="border-left-0 question-mark-span"><span class="question-mark-span">?</span></th>
 
                                 </tr>
 
@@ -255,23 +229,24 @@
 
                     </div>
 
-                    <div id="previous-agreements-requests" class="coordinator-tab-content tab-content"
-                         style="display: none">
+                    <div id="recent-agreements-requests" class="coordinator-tab-content tab-content"
+                    >
 
                         <div class="table-responsive-md">
-                            <table class="table table-striped" id="previous-agreements-requests-table">
+                            <table class="table table-striped" id="recent-agreements-requests-table">
                                 <thead>
                                 <tr class="table-danger">
 
-                                    <th class="text-center">#</th>
-                                    <th class="text-center">Data/Time</th>
-                                    <th class="text-center">provider</th>
-                                    <th class="text-center">Role in agreement</th>
-                                    <th class="text-center">Partner</th>
-                                    <th class="text-center">Debt amount</th>
-                                    <th class="text-center">Fee</th>
-                                    <th class="text-center">View</th>
-                                    <th class="text-center">Status</th>
+                                    <th class="">#</th>
+<!--                                    <th class="">Data/Time</th>-->
+                                    <th class="">provider</th>
+                                    <th class="">Role in agreement</th>
+                                    <th class="">Partner</th>
+                                    <th class="">Partner's coordinator</th>
+                                    <th class="">Debt amount</th>
+                                    <th class="">Exchange Rate</th>
+                                    <!--                                    <th class="">View</th>-->
+                                    <th class="">Status</th>
 
                                 </tr>
                                 </thead>
@@ -286,24 +261,24 @@
                     </div>
 
                     <div id="new-transactions-requests" class="coordinator-tab-content tab-content"
-                         style="display: none">
+                    >
 
                         <div class="table-responsive-md">
                             <table class="table table-striped" id="new-transactions-requests-table">
                                 <thead>
                                 <tr class="table-danger">
 
-                                    <th class="text-center">#</th>
-                                    <th class="text-center">Data/Time</th>
-                                    <th class="text-center">customer</th>
-                                    <th class="text-center">Role In Transaction</th>
-                                    <th class="text-center">counterpart</th>
-                                    <th class="text-center">counterpart coordinator</th>
-                                    <th class="text-center">Amount</th>
-                                    <th class="text-center">Max Fee</th>
-                                    <th class="text-center">View</th>
-                                    <th class="text-center">Approve/Decline</th>
-
+                                    <th class="">#</th>
+<!--                                    <th class="">Data/Time</th>-->
+                                    <th class="">customer</th>
+                                    <th class="">Role In Transaction</th>
+                                    <th class="">counterpart</th>
+                                    <th class="">counterpart's coordinator</th>
+                                    <th class="">Sender Amount</th>
+                                    <th class="">Receiver Amount</th>
+                                    <!--                                    <th class="">View</th>-->
+                                    <th class="border-right-0"></th>
+                                    <th class="border-left-0 question-mark-span"><span class="question-mark-span">?</span></th>
                                 </tr>
                                 </thead>
 
@@ -315,22 +290,22 @@
 
                     </div>
 
-                    <div id="previous-transactions-requests" class="coordinator-tab-content tab-content"
-                         style="display: none">
+                    <div id="recent-transactions-requests" class="coordinator-tab-content tab-content"
+                    >
                         <div class="table-responsive-md">
-                            <table class="table table-striped" id="previous-transactions-requestsTable">
+                            <table class="table table-striped" id="recent-transactions-requests-table">
                                 <thead>
                                 <tr class="table-danger">
-                                    <th class="text-center">#</th>
-                                    <th class="text-center">Data/Time</th>
-                                    <th class="text-center">customer</th>
-                                    <th class="text-center">Role In Transaction</th>
-                                    <th class="text-center">counterpart</th>
-                                    <th class="text-center">counterpart coordinator</th>
-                                    <th class="text-center">Amount</th>
-                                    <th class="text-center">Max Fee</th>
-                                    <th class="text-center">View</th>
-                                    <th class="text-center">Status</th>
+                                    <th class="">#</th>
+<!--                                    <th class="">Data/Time</th>-->
+                                    <th class="">customer</th>
+                                    <th class="">Role In Transaction</th>
+                                    <th class="">counterpart</th>
+                                    <th class="">counterpart's coordinator</th>
+                                    <th class="">Sender Amount</th>
+                                    <th class="">Receiver Amount</th>
+                                    <!--                                    <th class="">View</th>-->
+                                    <th class="">Status</th>
 
                                 </tr>
                                 </thead>
@@ -343,34 +318,34 @@
 
                     </div>
 
-                    <div id="coordinator-payment-messages" class="coordinator-tab-content tab-content">
-                        <div class="table-responsive-md">
-                            <table class="table table-striped" id="coordinator-payment-messages-table">
-                                <thead>
-                                <tr class="table-danger">
+                    <!--                    <div id="coordinator-payment-messages" class="coordinator-tab-content tab-content">-->
+                    <!--                        <div class="table-responsive-md">-->
+                    <!--                            <table class="table table-striped" id="coordinator-payment-messages-table">-->
+                    <!--                                <thead>-->
+                    <!--                                <tr class="table-danger">-->
 
-                                    <th class="text-center">#</th>
-                                    <th class="text-center" style="display: none">Transaction address</th>
-                                    <th class="text-center">Sender</th>
-                                    <th class="text-center">Receiver</th>
-                                    <th class="text-center">Amount</th>
-                                    <th class="text-center">Status</th>
-                                    <th class="text-center">?</th>
+                    <!--                                    <th class="">#</th>-->
+                    <!--                                    <th class="" >Transaction address</th>-->
+                    <!--                                    <th class="">Sender</th>-->
+                    <!--                                    <th class="">Receiver</th>-->
+                    <!--                                    <th class="">Amount</th>-->
+                    <!--                                    <th class="">Status</th>-->
+                    <!--                                    <th class="">?</th>-->
 
-                                </tr>
-                                </thead>
+                    <!--                                </tr>-->
+                    <!--                                </thead>-->
 
-                                <tbody>
-                                </tbody>
+                    <!--                                <tbody>-->
+                    <!--                                </tbody>-->
 
-                            </table>
-                        </div>
-                        <div class="text-center">
-                            <button class="btn btn-blue btn-general btn-default-size text-center add-row-btn"
-                                    onclick="App.coordinatorAddEmptyPaymentMessageRow()">Add
-                            </button>
-                        </div>
-                    </div>
+                    <!--                            </table>-->
+                    <!--                        </div>-->
+                    <!--                        <div class="">-->
+                    <!--                            <button class="btn btn-blue btn-general btn-default-size  add-row-btn"-->
+                    <!--                                    onclick="App.coordinatorAddEmptyPaymentMessageRow()">Add-->
+                    <!--                            </button>-->
+                    <!--                        </div>-->
+                    <!--                    </div>-->
 
                     <div id="coordinator-profile" class="coordinator-tab-content tab-content">
                         <div class="">
@@ -387,8 +362,8 @@
 
                         <li class="nav-item">
                             <a class="nav-link" href="#"
-                               onclick="App.openTab(event, 'agreements-list'); App.loadAgreementsList()">Agreements
-                                List</a>
+                               onclick="App.openTab(event, 'agreements-list'); App.loadAgreementsList()">Recent
+                                Agreements</a>
                         </li>
 
                         <li class="nav-item">
@@ -396,15 +371,15 @@
                                onclick="App.openTab(event, 'agreements-offers'); App.loadAgreementsOffers()">Offers</a>
                         </li>
 
-                        <li class="nav-item">
-                            <a class="nav-link" href="#"
-                               onclick="App.openTab(event, 'provider-payment-messages'); App.providerPreviousPaymentMessages()">Payment
-                                messages</a>
-                        </li>
+                        <!--                        <li class="nav-item">-->
+                        <!--                            <a class="nav-link" href="#"-->
+                        <!--                               onclick="App.openTab(event, 'provider-payment-messages'); App.providerRecentPaymentMessages()">Payment-->
+                        <!--                                messages</a>-->
+                        <!--                        </li>-->
 
                         <li class="nav-item">
                             <a class="nav-link" href="#"
-                               onclick="App.openTab(event, 'new-agreements');App.loadNewAgreements()">Start a new
+                               onclick="App.openTab(event, 'new-agreement');App.loadNewAgreements()">Start a new
                                 agreement</a>
                         </li>
 
@@ -416,40 +391,39 @@
 
                         <div class="table-responsive-md">
 
-                            <table class="table table-striped" id="agreementListTable">
+                            <table class="table table-striped" id="agreements-list-table">
                                 <thead>
                                 <tr class="table-danger">
 
-                                    <th rowspan="2" class="text-center" style="vertical-align: middle">#</th>
-                                    <th rowspan="2" class="text-center" style="vertical-align: middle">your
+                                    <th rowspan="2" class="">#</th>
+                                    <th rowspan="2" class="">your
                                         coordinator
                                     </th>
-                                    <th rowspan="2" class="text-center" style="vertical-align: middle">Role in
+                                    <th rowspan="2" class="">Role in
                                         agreement
                                     </th>
-                                    <th rowspan="2" class="text-center" style="vertical-align: middle">Partner</th>
-                                    <th rowspan="2" class="text-center" style="vertical-align: middle">Partner's
+                                    <th rowspan="2" class="">Partner</th>
+                                    <th rowspan="2" class="">Partner's
                                         coordinator
                                     </th>
-                                    <th rowspan="2" class="text-center" style="vertical-align: middle">Debt amount</th>
-                                    <th rowspan="2" class="text-center" style="vertical-align: middle">fee</th>
-                                    <th class="text-center" style="vertical-align: middle">confirmations</th>
-                                    <th rowspan="2" class="text-center" style="vertical-align: middle">Status</th>
+                                    <th rowspan="2" class="">Debt amount</th>
+                                    <th rowspan="2" class="">Exchange Rate</th>
+                                    <th class="">confirmations</th>
+                                    <th rowspan="2" class="">Status</th>
 
                                 </tr>
                                 <tr class="table-danger">
-                                    <th style="vertical-align: middle" class="text-center" rowspan="2">
+                                    <th class="" rowspan="2">
                                         <div class="row no-gutters">
-                                            <!--                            <div class="col-1" style="font-size: small">you</div>-->
-                                            <div class="col-3" style="font-size: small; vertical-align: middle">
+
+                                            <div class="col-3">
                                                 creditor
                                             </div>
-                                            <div class="col-4" style="font-size: small; vertical-align: middle">debtor's
-                                                coordinator
+                                            <div class="col-4">
+                                                debtor's coordinator
                                             </div>
-                                            <div class="col-5" style="font-size: small; vertical-align: middle">
-                                                creditor's
-                                                coordinator
+                                            <div class="col-5">
+                                                creditor's coordinator
                                             </div>
                                         </div>
                                     </th>
@@ -468,19 +442,19 @@
 
                     <div id="agreements-offers" class="provider-tab-content tab-content">
                         <div class="table-responsive-md">
-                            <table class="table table-striped" id="agreementsOffersTable">
+                            <table class="table table-striped" id="agreements-offers-table">
                                 <thead>
                                 <tr class="table-danger">
 
-                                    <th class="text-center">#</th>
-                                    <th class="text-center">your coordinator</th>
-                                    <th class="text-center">Debtor</th>
-                                    <th class="text-center">Debtor's Coordinator</th>
-                                    <th class="text-center">Debt amount</th>
-                                    <th class="text-center">fee</th>
-                                    <th class="text-center">Details</th>
-                                    <th class="text-center">Take Action</th>
-
+                                    <th class="">#</th>
+                                    <th class="">your coordinator</th>
+                                    <th class="">Debtor</th>
+                                    <th class="">Debtor's Coordinator</th>
+                                    <th class="">Debt amount</th>
+                                    <th class="">Exchange Rate</th>
+                                    <!--                                    <th class="">Details</th>-->
+                                    <th class="border-right-0"></th>
+                                    <th class="border-left-0"><span class="question-mark-span">?</span></th>
                                 </tr>
 
                                 </thead>
@@ -492,100 +466,68 @@
                         </div>
                     </div>
 
-                    <div id="provider-payment-messages" class="provider-tab-content tab-content">
+                    <!--                    <div id="provider-payment-messages" class="provider-tab-content tab-content">-->
 
+                    <!--                        <div class="table-responsive-md">-->
+                    <!--                            <table class="table table-striped" id="provider-payment-messages-table">-->
+                    <!--                                <thead>-->
+                    <!--                                <tr class="table-danger">-->
+
+                    <!--                                    <th class="">#</th>-->
+                    <!--                                    <th class="" >Transaction address</th>-->
+                    <!--                                    <th class="">Coordinator</th>-->
+                    <!--                                    <th class="">Destination</th>-->
+                    <!--                                    <th class="">Amount</th>-->
+                    <!--                                    <th class="">perform status</th>-->
+
+                    <!--                                </tr>-->
+
+                    <!--                                </thead>-->
+
+                    <!--                                <tbody>-->
+
+                    <!--                    <tr>-->
+                    <!--                        <td id="" class="disabled " contenteditable="false">1</td>-->
+                    <!--                        <td id="" class=""></td>-->
+                    <!--                        <td id="" class=""></td>-->
+                    <!--                        <td id="" class=""></td>-->
+                    <!--                        <td id="" class="center-content row no-gutters">-->
+                    <!--                            <button  class="btn btn-success" onclick="App.performTransaction()">perform transaction</button>-->
+                    <!--                        </td>-->
+                    <!--                    </tr>-->
+
+
+                    <!--                                </tbody>-->
+
+                    <!--                            </table>-->
+                    <!--                        </div>-->
+
+                    <!--                    </div>-->
+
+                    <div id="new-agreement" class="provider-tab-content tab-content">
                         <div class="table-responsive-md">
-                            <table class="table table-striped" id="providerPaymentTable">
+                            <table class="table table-striped" id="new-agreement-table">
                                 <thead>
                                 <tr class="table-danger">
 
-                                    <th class="text-center">#</th>
-                                    <th class="text-center" style="display: none">Transaction address</th>
-                                    <th class="text-center">Coordinator</th>
-                                    <th class="text-center">Destination</th>
-                                    <th class="text-center">Amount</th>
-                                    <th class="text-center">perform status</th>
-
-                                </tr>
-
-                                </thead>
-
-                                <tbody>
-
-                                <!--                    <tr>-->
-                                <!--                        <td id="" class="disabled text-center" contenteditable="false">1</td>-->
-                                <!--                        <td id="" class="text-center"></td>-->
-                                <!--                        <td id="" class="text-center"></td>-->
-                                <!--                        <td id="" class="text-center"></td>-->
-                                <!--                        <td id="" class="center-content row no-gutters">-->
-                                <!--                            <button id="performTransactionBtn" class="btn btn-success" onclick="App.performTransaction()">perform transaction</button>-->
-                                <!--                        </td>-->
-                                <!--                    </tr>-->
-
-
-                                </tbody>
-
-                            </table>
-                        </div>
-
-                    </div>
-
-                    <div id="new-agreements" class="provider-tab-content tab-content">
-                        <div class="table-responsive-md">
-                            <table class="table table-striped" id="newAgreementTable">
-                                <thead>
-                                <tr class="table-danger">
-
-                                    <th style="vertical-align: middle" class="text-center">#</th>
-                                    <th style="vertical-align: middle" class="text-center">Coordinator</th>
-                                    <th style="vertical-align: middle" class="text-center">Partner</th>
-                                    <th style="vertical-align: middle" class="text-center">Partner's coordinator</th>
-                                    <th style="vertical-align: middle" class="text-center">Debt Amount</th>
-                                    <th style="vertical-align: middle" class="text-center">Fee</th>
-                                    <th class="">Take Action</th>
+                                    <th class="">#</th>
+                                    <th class="">Coordinator</th>
+                                    <th class="">Partner</th>
+                                    <th class="">Partner's coordinator</th>
+                                    <th class="">Debt Amount</th>
+                                    <th class="">Exchange Rate</th>
+                                    <th class="">?</th>
                                     <!--                    <th>confirmation status</th>-->
                                 </tr>
 
                                 </thead>
 
                                 <tbody>
-                                <!--                <tr>-->
-                                <!--                    <td id="newAgreementNumber0" class="disabled text-center" contenteditable="false">1</td>-->
-                                <!--                    <td id="newAgreementCoordinator0" class="text-center">2</td>-->
-                                <!--                    <td id="newAgreementPartnerAccount0" class="text-center">3</td>-->
-                                <!--                    <td id="newAgreementPartnerCoordinator0" class="text-center">4</td>-->
-                                <!--                    <td id="newAgreementDebtAmount0" class="text-center">5</td>-->
-                                <!--                    <td id="newAgreementFee0" class="text-center">6</td>-->
-                                <!--                    <td id="newAgreementConfirmationStatus0" class="text-center row no-gutters">-->
-
-                                <!--                        <div class="col-1"><input id="newAgreementConfirmationStatusCheck10" type="checkbox" class="form-check-input"-->
-                                <!--                                                  style="margin: auto; width: 20px; height: 20px;">-->
-                                <!--                        </div>-->
-                                <!--                        <div class="col-3"><input id="newAgreementConfirmationStatusCheck20" type="checkbox" class="form-check-input"-->
-                                <!--                                                  style="margin: auto; width: 20px; height: 20px;"-->
-                                <!--                                                  disabled>-->
-                                <!--                        </div>-->
-                                <!--                        <div class="col-2"><input id="newAgreementConfirmationStatusCheck30" type="checkbox" class="form-check-input"-->
-                                <!--                                                  style="margin: auto; width: 20px; height: 20px;"-->
-                                <!--                                                  disabled>-->
-                                <!--                        </div>-->
-                                <!--                        <div class="col-3"><input id="newAgreementConfirmationStatusCheck40" type="checkbox" class="form-check-input"-->
-                                <!--                                                  style="margin: auto; width: 20px; height: 20px;"-->
-                                <!--                                                  disabled>-->
-                                <!--                        </div>-->
-                                <!--                        <div class="col-3">-->
-                                <!--                            <button type="button" class="btn btn-sm btn-success" id="newAgreementSubmitBtn0"-->
-                                <!--                                    style="font-size: smaller; margin: auto" onclick="App.startAgreement(0)">submit-->
-                                <!--                            </button>-->
-                                <!--                        </div>-->
-                                <!--                    </td>-->
-                                <!--                </tr>-->
-
                                 </tbody>
                             </table>
                         </div>
                         <div class="text-center">
-                            <button class="btn btn-blue btn-general btn-default-size text-center add-row-btn"
+                            <button class="btn btn-blue btn-general btn-default-size  add-row-btn"
                                     onclick="App.addEmptyNewAgreementRow()">Add
                             </button>
                         </div>
@@ -609,105 +551,101 @@
 
                         <li class="nav-item">
                             <a class="nav-link" href="#"
-                               onclick="App.openTab(event, 'transactions-list'); App.loadTransactions();">Transactions
-                                list</a>
+                               onclick="App.openTab(event, 'transactions-list'); App.loadTransactionsList();">Recent
+                                Transactions</a>
                         </li>
 
                         <li class="nav-item">
                             <a class="nav-link" href="#"
-                               onclick="App.openTab(event, 'offered-transactions'); App.loadOfferedTransactions();">Offered
-                                transactions</a>
+                               onclick="App.openTab(event, 'offered-transactions'); App.loadOfferedTransactions();">Offers</a>
                         </li>
 
 
                         <li class="nav-item">
                             <a class="nav-link" href="#"
-                               onclick="App.openTab(event, 'new-transaction'); App.loadNewTransactions()">Start
-                                new transaction</a>
+                               onclick="App.openTab(event, 'new-transaction'); App.loadNewTransactions()">Start a new transaction</a>
                         </li>
 
                         <!--            <li class="nav-item">-->
                         <!--                <a class="nav-link customerTablink" href="#"-->
-                        <!--                   onclick="App.openTab(event, 'customer-previous-transactions'); App.loadPreviousTransactions()">Previous-->
+                        <!--                   onclick="App.openTab(event, 'customer-recent-transactions'); App.loadPreviousTransactions()">Recent-->
                         <!--                    transactions</a>-->
                         <!--            </li>-->
 
-                        <li class="nav-item">
-                            <a class="nav-link" href="#"
-                               onclick="App.openTab(event, 'customer-payment-messages'); App.customerLoadPaymentMessages()">Payment
-                                messages</a>
-                        </li>
+                        <!--                        <li class="nav-item">-->
+                        <!--                            <a class="nav-link" href="#"-->
+                        <!--                               onclick="App.openTab(event, 'customer-payment-messages'); App.customerLoadPaymentMessages()">Payment-->
+                        <!--                                messages</a>-->
+                        <!--                        </li>-->
 
 
                     </ul>
                 </div>
                 <div id="customer-right-content" class="right-content col-md-10">
 
-                    <div id="customer-payment-messages" class="customer-tab-content tab-content">
+                    <!--                    <div id="customer-payment-messages" class="customer-tab-content tab-content">-->
+                    <!--                        <table class="table table-striped" id="customer-payment-messages-table">-->
+                    <!--                            <thead>-->
+                    <!--                            <tr class="table-danger">-->
 
-                        <table class="table table-striped" id="customerPaymentMessagesTable">
-                            <thead>
-                            <tr class="table-danger">
+                    <!--                                <th class="">#</th>-->
+                    <!--                                <th class="">Coordinator</th>-->
+                    <!--                                <th class="">Destination</th>-->
+                    <!--                                <th class="">Amount</th>-->
 
-                                <th class="text-center">#</th>
-                                <th class="text-center">Coordinator</th>
-                                <th class="text-center">Destination</th>
-                                <th class="text-center">Amount</th>
+                    <!--                            </tr>-->
 
-                            </tr>
+                    <!--                            </thead>-->
 
-                            </thead>
+                    <!--                            <tbody>-->
+                    <!--                            </tbody>-->
 
-                            <tbody>
-                            </tbody>
+                    <!--                        </table>-->
 
-                        </table>
-
-                    </div>
+                    <!--                    </div>-->
 
                     <div id="transactions-list" class="customer-tab-content tab-content">
 
                         <div>
 
-                            <table class="table table-striped" id="transactionsListTable">
+                            <table class="table table-striped" id="transactions-list-table">
                                 <thead>
                                 <tr class="table-danger">
 
-                                    <th rowspan="2" class="text-center" style="vertical-align: middle">#</th>
-                                    <th rowspan="2" class="text-center" style="vertical-align: middle">your
+                                    <th rowspan="2" class="">#</th>
+                                    <th rowspan="2" class="">your
                                         Coordinator
                                     </th>
-                                    <th rowspan="2" class="text-center" style="vertical-align: middle">Counterpart</th>
-                                    <th rowspan="2" class="text-center" style="vertical-align: middle">Counterpart
-                                        coordinator
+                                    <th rowspan="2" class="">Counterpart</th>
+                                    <th rowspan="2" class="">Counterpart's coordinator
                                     </th>
-                                    <th rowspan="2" class="text-center" style="vertical-align: middle">Role In
+                                    <th rowspan="2" class="">Role In
                                         Transaction
                                     </th>
-                                    <th rowspan="2" class="text-center" style="vertical-align: middle">Amount</th>
-                                    <th rowspan="2" class="text-center" style="vertical-align: middle">Max Fee</th>
-                                    <th class="text-center" style="vertical-align: middle"
-                                        style="vertical-align: middle">
+                                    <th rowspan="2" class="">Sender Amount</th>
+                                    <th rowspan="2" class="">Receiver Amount</th>
+                                    <th class=""
+                                    >
                                         Confirmations
                                     </th>
-                                    <th rowspan="2" class="text-center" style="vertical-align: middle">Status</th>
+                                    <th rowspan="2" class="">Status</th>
 
                                 </tr>
                                 <tr class="table-danger">
-                                    <th style="vertical-align: middle" class="text-center" rowspan="2">
+                                    <th class="" rowspan="2">
                                         <div class="row no-gutters">
-                                            <!--                            <div class="col-1" style="font-size: small">you</div>-->
-                                            <div class="col-4" style="font-size: small; vertical-align: middle">
+
+                                            <div class="col-4">
                                                 receiver
                                             </div>
-                                            <div class="col-3" style="font-size: small; vertical-align: middle">sender's
+                                            <div class="col-3">sender's
                                                 coordinator
                                             </div>
-                                            <div class="col-5" style="font-size: small; vertical-align: middle">
+                                            <div class="col-5">
                                                 receiver's
                                                 coordinator
                                             </div>
-                                            <div class="col-2" style="font-size: small; vertical-align: middle"></div>
+                                            <div class="col-2"></div>
                                         </div>
                                     </th>
                                 </tr>
@@ -726,19 +664,17 @@
                     <div id="new-transaction" class="customer-tab-content tab-content">
 
                         <div>
-                            <table class="table table-striped" id="newTransactionTable">
+                            <table class="table table-striped" id="new-transaction-table">
                                 <thead>
                                 <tr class="table-danger">
 
-                                    <th style="vertical-align: middle" class="text-center">#</th>
-                                    <th style="vertical-align: middle" class="text-center">your Coordinator</th>
-                                    <th style="vertical-align: middle" class="text-center">Destination</th>
-                                    <th style="vertical-align: middle" class="text-center">Destination Coordinator</th>
-                                    <th style="vertical-align: middle" class="text-center">Amount</th>
-                                    <th style="vertical-align: middle" class="text-center">Max Fee</th>
-                                    <th class="">Take Action</th>
-
-                                    <!--                        <th></th>-->
+                                    <th class="">#</th>
+                                    <th class="">your Coordinator</th>
+                                    <th class="">Destination</th>
+                                    <th class="">Destination Coordinator</th>
+                                    <th class="">Sender Amount</th>
+                                    <th class="">Receiver Amount</th>
+                                    <th class="">?</th>
 
                                 </thead>
 
@@ -748,7 +684,7 @@
                             </table>
 
                             <div class="text-center">
-                                <button class="btn btn-blue btn-general btn-default-size text-center add-row-btn"
+                                <button class="btn btn-blue btn-general btn-default-size  add-row-btn"
                                         onclick="App.addEmptyNewTransactionRow()">Add
                                 </button>
                             </div>
@@ -757,42 +693,20 @@
 
                     </div>
 
-                    <div id="pending-transactions" class="customer-tab-content tab-content">
-                        <table class="table table-striped" id="pendingTransactionsTable">
-                            <thead>
-                            <tr class="table-danger">
-
-                                <th class="text-center">#</th>
-                                <th class="text-center">your Coordinator</th>
-                                <th class="text-center">Counterpart</th>
-                                <th class="text-center">Counterpart coordinator</th>
-                                <th class="text-center">Type</th>
-                                <th class="text-center">Amount</th>
-                                <th class="text-center">Max Fee</th>
-                                <th class="text-center">State</th>
-
-                            </tr>
-                            </thead>
-
-                            <tbody>
-                            </tbody>
-
-                        </table>
-                    </div>
 
                     <div id="offered-transactions" class="customer-tab-content tab-content">
-                        <table class="table table-striped" id="offeredTransactionsTable">
+                        <table class="table table-striped" id="offered-transactions-table">
                             <thead>
                             <tr class="table-danger">
 
-                                <th class="text-center">#</th>
-                                <th class="text-center">your Coordinator</th>
-                                <th class="text-center">Sender</th>
-                                <th class="text-center">Sender coordinator</th>
-                                <th class="text-center">amount</th>
-                                <th class="text-center">Max fee</th>
-                                <th class="text-center">Take Action</th>
-
+                                <th class="">#</th>
+                                <th class="">your Coordinator</th>
+                                <th class="">Sender</th>
+                                <th class="">Sender coordinator</th>
+                                <th class="">Sender Amount</th>
+                                <th class="">Receiver Amount</th>
+                                <th class="border-right-0"></th>
+                                <th class="border-left-0"><span class="question-mark-span">?</span></th>
                             </tr>
                             </thead>
 
@@ -844,11 +758,12 @@
                                         <label class="form-item">
                                             Set MainGraph Contract Address
                                         </label>
-                                        <input type="text" placeholder="Netereum contract address"
+                                        <input id="MainGraph-contract-address" type="text"
+                                               placeholder="MainGraph contract address"
                                                class="form-item my-form-control form-control form-control-blue">
 
-                                        <div class="text-center form-item">
-                                            <button class="btn btn-blue btn-general btn-default-size text-center btn-block"
+                                        <div class=" form-item">
+                                            <button class="btn btn-blue btn-general btn-default-size  btn-block"
                                                     onclick="App.setNetereumContractRequirements()">Set
                                             </button>
                                         </div>
@@ -862,11 +777,12 @@
                                         <label class="form-item">
                                             Set Netereum Contract Address
                                         </label>
-                                        <input type="text" placeholder="MainGraph contract address"
+                                        <input id="Netereum-contract-address" type="text"
+                                               placeholder="Netereum contract address"
                                                class="form-item my-form-control form-control form-control-blue">
 
-                                        <div class="text-center form-item">
-                                            <button class="btn btn-blue btn-general btn-default-size text-center btn-block"
+                                        <div class=" form-item">
+                                            <button class="btn btn-blue btn-general btn-default-size  btn-block"
                                                     onclick="App.setMainGraphContractRequirements()">Set
                                             </button>
                                         </div>
@@ -881,9 +797,9 @@
                             <label class="form-item">
                                 Add Coordinator
                             </label>
-                            <input type="text" placeholder="coordinator address"
+                            <input id="coordinator-address" type="text" placeholder="coordinator address"
                                    class="form-item my-form-control form-control form-control-blue">
-                            <div class="text-center form-item">
+                            <div class=" form-item">
                                 <button class="btn btn-blue btn-general btn-default-size btn-block"
                                         onclick="App.adminAddCoordinator()">Add
                                 </button>
@@ -895,7 +811,7 @@
         </section>
     </div>
 
-    <div id="logged-out-content" style="display: block">
+    <div id="logged-out-content">
 
         <header>
             <nav id="logged-out-navbar" class="navbar navbar-dark navbar-expand-lg netereum-top-nav fixed-top">
@@ -910,7 +826,7 @@
 
                 <div class="collapse navbar-collapse netereum-nav-wrapper my-navbar-collapse my-navbar-nav"
                      id="netereum-logged-out-menu">
-                    <ul class="nav-list navbar-nav my-navbar-nav" style="position: relative">
+                    <ul class="nav-list navbar-nav my-navbar-nav">
                         <li class="nav-item">
                             <a class="nav-link active smooth-scroll" href="#home">Home</a>
                         </li>
@@ -1180,7 +1096,7 @@
                                 <div id="team-members" class="owl-carousel owl-theme">
                                     <div class="team-member">
                                         <img src="img/team/team-1.jpg">
-                                        <div class="team-member-info text-center">
+                                        <div class="team-member-info ">
                                             <h4 class="team-member-name">Mohammad Mojahed</h4>
                                             <h4 class="team-member-designation">FRONT-END DEVELOPER</h4>
                                             <ul class="social-list">
@@ -1198,7 +1114,7 @@
                                     </div>
                                     <div class="team-member">
                                         <img src="img/team/team-2.jpg">
-                                        <div class="team-member-info text-center">
+                                        <div class="team-member-info ">
                                             <h4 class="team-member-name">Mohammad Ali Tavalaiee</h4>
                                             <h4 class="team-member-designation">MANAGER</h4>
                                             <ul class="social-list">
@@ -1216,7 +1132,7 @@
                                     </div>
                                     <div class="team-member">
                                         <img src="img/team/team-3.jpg">
-                                        <div class="team-member-info text-center">
+                                        <div class="team-member-info ">
                                             <h4 class="team-member-name">Khashayar Khajavi</h4>
                                             <h4 class="team-member-designation">BACK-END DEVELOPER</h4>
                                             <ul class="social-list">
@@ -1234,7 +1150,7 @@
                                     </div>
                                     <div class="team-member">
                                         <img src="img/team/team-4.jpg">
-                                        <div class="team-member-info text-center">
+                                        <div class="team-member-info ">
                                             <h4 class="team-member-name">Farhad Rahbar</h4>
                                             <h4 class="team-member-designation">OWNER</h4>
                                             <ul class="social-list">
@@ -1252,7 +1168,7 @@
                                     </div>
                                     <div class="team-member">
                                         <img src="img/team/team-5.jpg">
-                                        <div class="team-member-info text-center">
+                                        <div class="team-member-info ">
                                             <h4 class="team-member-name">Sadegh Honardoost</h4>
                                             <h4 class="team-member-designation">CONSULTANT</h4>
                                             <ul class="social-list">
@@ -1291,7 +1207,7 @@
                                  data-wow-dalay=".5s">
                                 <div class="col-md-12">
                                     <div id="customers-testimonials" class="owl-carousel owl-theme">
-                                        <div class="text-center testimonials">
+                                        <div class=" testimonials">
                                             <img src="img/client/client-1.jpg"
                                                  class="img-fluid rounded-circle horizontal-align"
                                                  alt="testimonial">
@@ -1316,7 +1232,7 @@
                                                 </p>
                                             </div>
                                         </div>
-                                        <div class="testimonials text-center">
+                                        <div class="testimonials ">
                                             <img src="img/client/client-2.jpg"
                                                  class="img-fluid rounded-circle horizontal-align"
                                                  alt="testimonial">
@@ -1342,7 +1258,7 @@
                                             </div>
                                         </div>
 
-                                        <div class="testimonials text-center">
+                                        <div class="testimonials ">
                                             <img src="img/client/client-3.jpg"
                                                  class="img-fluid rounded-circle horizontal-align"
                                                  alt="testimonial">
@@ -1385,7 +1301,7 @@
                     <div class="container my-no-gutters">
                         <div class="row no-gutters">
                             <div class="col-md-4 animated wow zoomIn" data-wow-duration="1.5s" data-wow-dalay=".5s">
-                                <div class="pricing-box text-center">
+                                <div class="pricing-box ">
                                     <h4 class="pricing-title">Basic</h4>
                                     <h3 class="pricing-value">49<sup>$</sup></h3>
                                     <ul class="pricing-spec">
@@ -1410,7 +1326,7 @@
                             </div>
 
                             <div class="col-md-4 animated wow bounceInUp" data-wow-duration="1.5s" data-wow-dalay=".5s">
-                                <div class="pricing-box pricing-box-lg text-center">
+                                <div class="pricing-box pricing-box-lg ">
                                     <h4 class="pricing-title">ENTERPRISE</h4>
                                     <h3 class="pricing-value">49<sup>$</sup></h3>
                                     <ul class="pricing-spec">
@@ -1435,7 +1351,7 @@
                             </div>
 
                             <div class="col-md-4 wow animated zoomIn" data-wow-duration="1.5s" data-wow-dalay=".5s">
-                                <div class="pricing-box text-center">
+                                <div class="pricing-box ">
                                     <h4 class="pricing-title">STANDARD</h4>
                                     <h3 class="pricing-value">49<sup>$</sup></h3>
                                     <ul class="pricing-spec">
@@ -1474,7 +1390,7 @@
                         </div>
 
                         <div class="container my-no-gutters">
-                            <div class="row no-gutters animated wow bounceInLeft text-center" data-wow-duration="1.5s"
+                            <div class="row no-gutters animated wow bounceInLeft " data-wow-duration="1.5s"
                                  data-wow-dalay=".5s">
                                 <div class="col-md-3">
                                     <div class="stats-item">
@@ -1519,7 +1435,7 @@
                     </div>
 
                     <div class="container my-no-gutters">
-                        <div class="row no-gutters animated wow bounceInRight text-center" data-wow-duration="1.5s"
+                        <div class="row no-gutters animated wow bounceInRight " data-wow-duration="1.5s"
                              data-wow-dalay=".5s">
                             <div class="col-md-12">
                                 <div id="our-clients" class="owl-carousel owl-theme">
@@ -1657,8 +1573,6 @@
 
 <!--</div>-->
 
-<!--<div class="" style="height: 90px; top: 0; bottom: 0; left: 0; right:0; position: absolute"-->
-
 
 <script src="js/web3.min.js"></script>
 <script src="js/truffle-contract.js"></script>
@@ -1683,9 +1597,9 @@
 <!--                            </button>-->
 <!--                        </div>-->
 
-<!--                        <h5 class="text-center modal-form-item font-weight-bold" id="ex1">Create an account!</h5>-->
+<!--                        <h5 class=" modal-form-item font-weight-bold" id="ex1">Create an account!</h5>-->
 
-<!--                        <label for="signAs" style="" class="">Sign up as </label>-->
+<!--                        <label for="signAs"  class="">Sign up as </label>-->
 <!--                        <select id="signAs" class="form-control my-form-control form-control-blue modal-form-item"-->
 <!--                                onchange="App.showSpecialBox()">-->
 <!--                            <option value="coordinator">coordinator</option>-->
@@ -1713,7 +1627,7 @@
 <!--                            </button>-->
 <!--                        </div>-->
 
-<!--                        <h6 class="text-center modal-form-item">have an account?-->
+<!--                        <h6 class=" modal-form-item">have an account?-->
 <!--                            <button class="btn btn-sm font-weight-bold" data-dismiss="modal"-->
 <!--                                    data-toggle="modal" href="#loginModal">Log in-->
 <!--                            </button>-->
@@ -1743,10 +1657,10 @@
                                 </button>
                             </div>
                             <div class="modal-container">
-                                <h5 class="text-center modal-form-item font-weight-bold" id="ex2">Welcome Back!</h5>
+                                <h5 class=" modal-form-item font-weight-bold" id="ex2">Welcome Back!</h5>
 
-                                <label class="" for="loginAs">Login as </label>
-                                <select id="loginAs"
+                                <label class="" for="login-as">Login as </label>
+                                <select id="login-as"
                                         class="modal-form-item form-control my-form-control form-control-blue">
                                     <option value="coordinator">coordinator</option>
                                     <option value="provider">provider</option>
@@ -1763,7 +1677,7 @@
                                     </button>
                                 </div>
 
-                                <!--                            <h6 class="text-center modal-form-item">Don't have an account?-->
+                                <!--                            <h6 class=" modal-form-item">Don't have an account?-->
                                 <!--                                <span>-->
                                 <!--                                    <button id="#" class="btn btn-sm font-weight-bold" data-dismiss="modal"-->
                                 <!--                                            data-toggle="modal"-->
