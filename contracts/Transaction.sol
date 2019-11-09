@@ -38,7 +38,7 @@ contract Transaction
         if(!barterCubeCalled && counterPermission == 4)
         {
             barterCubeCalled = true;
-            //BarterCube(barterCubeAddress).doTransaction(address (this));//needs to be modified
+            Netereum(barterCubeAddress).doTransaction(address (this));//needs to be modified
         }
     }
     function decline() public {

@@ -38,7 +38,7 @@ contract Netereum
     mapping(address => bool) isCoordinatorInserted;
     mapping(address => Transaction) createdTransactions;// these are all the transactions that have been created
     address [] public createdTransactionsAddress;
-    mapping(address => uint8) public transactionsStatus ;// 0: not created  1:created 2: pending 3:added
+    mapping(address => uint8) public transactionsStatus ;// 0: not created  1:created 2: pending 3:added 4:declined:
     mapping(address => Agreement) createdAgreements;// these are all the Agreements that have been created
     mapping(address => uint8) public agreementsStatus;// 0: not created 1:offered 2:pending 3:expired 4:declined 5:altering
     address [] public createdAgreementsAddress;
@@ -150,6 +150,21 @@ contract Netereum
        be sent to the do transaction function. if the transactions buyerCost is less than the buyerCost that the system can handle with its current state,
        the transaction will be added to the mapping "transactions" and can be executed by the coordinators. */
     uint256 public xy;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     function doTransaction(address addr) external
     {
         require(transactionsStatus[addr] == 1, "11");

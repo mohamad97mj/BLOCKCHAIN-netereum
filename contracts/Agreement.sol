@@ -27,7 +27,21 @@ contract Agreement
 //            declinedBy = 2;
 //            //BarterCube(barterCubeAddress).declineAgreement(address(this));
 //        }
-//        else if (msg.sender == debtorCoordinator && !debtorCoordinatorPermission)
+//        else if (msg.sender == debtorCoordinator && !debtorC
+//        if (msg.sender == debtorCoordinator && debtorCoordinatorPermission == 0)
+//        {
+//            counterPermission ++;
+//            debtorCoordinatorPermission = 1;
+//            //BarterCube(barterCubeAddress).approveAgreement(address(this));
+//        }
+//        if (msg.sender == creditorCoordinator && creditorCoordinatorPermission == 0)
+//        {
+//            counterPermission++;
+//            creditorCoordinatorPermission = 1;
+//            //BarterCube(barterCubeAddress).approveAgreement(address(this));
+//        }
+//        if (!barterCubeCalled && counterPermission == 4)
+//        {oordinatorPermission)
 //        {
 //            declinedBy = 3;
 //            //BarterCube(barterCubeAddress).declineAgreement(address(this));

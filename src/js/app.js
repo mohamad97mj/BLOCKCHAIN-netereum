@@ -542,18 +542,18 @@ App = {
         var recentTransactionRequestDeclineBtnId = "recentTransactionRequestDeclineBtn" + counter;
         var recentTransactionRequestAddressId = "recentTransactionRequestAddress" + counter;
 
-        var row = `<tr>
-                    <td id='${recentTransactionRequestNumberId}' class="disabled " contenteditable="false">${parseInt(counter) + 1}</td>
-<!--                    <td id='${recentTransactionRequestNumberId}' class="disabled " contenteditable="false">${dateTime}</td>-->
-                    <td id="${recentTransactionRequestAddressId}"   class=" disabled" contenteditable="false">${transaction}</td>
-                    <td id='${recentTransactionRequestAccountId}' class=""  contenteditable="false">${account}</td>
-                    <td id='${recentTransactionRequestRoleInTransactionId}' class=" disabled" contenteditable="false">${roleInTransaction}</td>
-                    <td id='${recentTransactionRequestCounterpartId}' class=" disabled"  contenteditable="false">${counterpart}</td>
-                    <td id='${recentTransactionRequestCounterpartCoordinatorId}' class=" disabled"  contenteditable="false">${counterpartCoordinator}</td>
-                    <td id='${recentTransactionRequestAmountId}' class=" disabled" contenteditable="false">${amount}</td>
-                    <td id='${recentTransactionRequestReceiverAmountId}' class=" disabled" contenteditable="false">${receiverAmount}</td>
+        var row = `<tr contenteditable="false">
+                    <td id='${recentTransactionRequestNumberId}' >${parseInt(counter) + 1}</td>
+<!--                    <td id='${recentTransactionRequestNumberId}'>${dateTime}</td>-->
+                    <td id="${recentTransactionRequestAddressId}"   class="display-none">${transaction}</td>
+                    <td id='${recentTransactionRequestAccountId}' >${account}</td>
+                    <td id='${recentTransactionRequestRoleInTransactionId}'> ${roleInTransaction}</td>
+                    <td id='${recentTransactionRequestCounterpartId}'> ${counterpart}</td>
+                    <td id='${recentTransactionRequestCounterpartCoordinatorId}'> ${counterpartCoordinator}</td>
+                    <td id='${recentTransactionRequestAmountId}'> ${amount}</td>
+                    <td id='${recentTransactionRequestReceiverAmountId}'>${receiverAmount}</td>
 <!--                    <td id='${recentTransactionRequestViewId}' class=" disabled"  contenteditable="false">${view}</td>-->
-                    <td id='${recentTransactionRequestConfirmationStatusId}'   class=" row no-gutters disabled" contenteditable = false>${status} </td>
+                    <td id='${recentTransactionRequestConfirmationStatusId}'>${status} </td>
       </tr>
 `;
 
@@ -583,13 +583,13 @@ App = {
                                         var counterpartCoordinator;
                                         var roleInTransaction;
 
-                                        var sender = await instance.senderAccount();
-                                        var receiver = await instance.receiverAccount();
-                                        var senderCoordinator = await instance.senderCoordinator();
-                                        var receiverCoordinator = await instance.receiverCoordinator();
+                                        var sender = await instance.buyer();
+                                        var receiver = await instance.seller();
+                                        var senderCoordinator = await instance.buyerCoordinator();
+                                        var receiverCoordinator = await instance.sellerCoordinator();
 
-                                        var senderCoordinatorPermission = await instance.senderCoordinatorPermission();
-                                        var receiverCoordinatorPermission = await instance.receiverCoordinatorPermission();
+                                        var senderCoordinatorPermission = await instance.buyerCoordinatorPermission();
+                                        var receiverCoordinatorPermission = await instance.sellerCoordinatorPermission();
 
                                         var statusCode = await NetereumInstance.transactionsStatus(transactionAddress);
                                         statusCode = statusCode + "";
@@ -606,7 +606,7 @@ App = {
                                                 status = "pending";
                                                 break;
                                             case "3":
-                                                status = "done";
+                                                status = "added";
                                                 break;
                                             case "4":
                                                 status = "declined";
@@ -618,9 +618,9 @@ App = {
                                         if (senderCoordinator === account) {
                                             flag = true;
                                             roleInTransaction = 'sender';
-                                            customer = await instance.senderAccount();
-                                            counterpart = await instance.receiverAccount();
-                                            counterpartCoordinator = await instance.receiverCoordinator();
+                                            customer = await instance.buyer();
+                                            counterpart = await instance.seller();
+                                            counterpartCoordinator = await instance.sellerCoordinator();
 
                                         } else
                                         // if (creditorCoordinator === account && creditorCoordinatorPermissionStatus == '0') {
@@ -628,19 +628,19 @@ App = {
 
                                             flag = true;
                                             roleInTransaction = 'receiver';
-                                            customer = await instance.receiverAccount();
-                                            counterpart = await instance.senderAccount();
-                                            counterpartCoordinator = await instance.senderCoordinator();
+                                            customer = await instance.seller();
+                                            counterpart = await instance.buyer();
+                                            counterpartCoordinator = await instance.buyerCoordinator();
                                         }
 
 
                                         if (flag) {
                                             var view = "some views";
                                             var dateTime = "2 minutes ago";
-                                            var amount = await instance.transactionAmount();
-                                            var receiverAmount = await instance.receiverAmount();
+                                            var senderAmount = await instance.buyerCost();
+                                            var receiverAmount = await instance.sellerCost();
 
-                                            App.addRecentTransactionRequestRow(transactionAddress, dateTime, customer, roleInTransaction, counterpart, counterpartCoordinator, amount, receiverAmount, view, status);
+                                            App.addRecentTransactionRequestRow(transactionAddress, dateTime, customer, roleInTransaction, counterpart, counterpartCoordinator, senderAmount, receiverAmount, view, status);
                                         }
                                     });
                                 }
